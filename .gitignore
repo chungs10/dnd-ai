@@ -1,0 +1,5 @@
+# Ignore all contents in models folders (but keep the folders themselves)
+models/*
+**/models/*
+models/**/*
+**/models/**/*
