@@ -3,3 +3,5 @@ models/*
 **/models/*
 models/**/*
 **/models/**/*
+papers
+.idea
