@@ -30,8 +30,8 @@ Python=3.12
 torch
 Chromadb # as database backend
 mem0ai # as memory layer
-mem0ai[graph]
-neo4j # as graph database backend
+mem0ai[graph] (not using for now)
+neo4j # as graph database backend (not using for now)
 
 ## Quick Start
 
@@ -45,22 +45,19 @@ pip install -e ./thirdparty/mem0
 pip install mem0ai[graph]
 ```
 
-#### 1.2 neo4j
+#### 1.2 neo4j (not using for now)
 Setup the neo4j with docker. [official document](https://neo4j.com/docs/operations-manual/current/docker/introduction/)
 
 ```shell
-HOST_PATH=...
-# You may want to map some useful files onto host machine.
-mkdir -p ${HOST_PATH}/neo4j/data ${HOST_PATH}/neo4j/logs ${HOST_PATH}/neo4j/conf:/v ${HOST_PATH}/neo4j/import ${HOST_PATH}/neo4j/plugins
-# run it
-docker run -d --name neo4j   \
--p 7474:7474 -p 7687:7687   \ 
--v ${HOST_PATH}/neo4j/data:/data   \
--v ${HOST_PATH}/neo4j/logs:/logs   \
--v ${HOST_PATH}/neo4j/conf:/var/lib/neo4j/conf  \
--v ${HOST_PATH}/neo4j/import:/var/lib/neo4j/import   \
--v ${HOST_PATH}/neo4j/plugins:/var/lib/neo4j/plugins  \
--e NEO4J_AUTH=neo4j/12345678 neo4j:latest
+docker run \
+    -p 7474:7474 -p 7687:7687 \
+    --name neo4j-apoc \
+    -e NEO4J_apoc_export_file_enabled=true \
+    -e NEO4J_apoc_import_file_enabled=true \
+    -e NEO4J_apoc_import_file_use__neo4j__config=true \
+    -e NEO4J_PLUGINS=\[\"apoc\"\] \
+    -e NEO4J_AUTH=neo4j/12345678 \
+    neo4j:latest
 ```
 
 Then you can visit http://localhost:7474/browser/ to check whether the neo4j container runs correctly.
