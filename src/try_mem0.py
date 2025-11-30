@@ -28,8 +28,17 @@ memory_config = {
             "max_tokens": 2000,
             "ollama_base_url": "http://127.0.0.1:11434"
         }
+    },
+    "graph_store": {
+        "provider": "neo4j",
+        "config": {
+            "url": "neo4j://localhost:7687",
+            "username": "neo4j",
+            "password": "12345678"
+        }
     }
 }
+
 
 openai_client = OpenAI(
     base_url='http://127.0.0.1:11434/v1'
