@@ -5,3 +5,7 @@ models/**/*
 **/models/**/*
 papers
 .idea
+*.eddx
+**/.pytest_cache/**
+**/__pycache__/**
+src/db
