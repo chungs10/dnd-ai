@@ -3,9 +3,9 @@ from openai import OpenAI
 from mem0 import Memory
 
 os.environ["OPENAI_API_KEY"] = "api"
-os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+# os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 # MODEL_NAME = "capybarahermes"
-MODEL_NAME = "hopephoto/Qwen3-4B-Instruct-2507_q8:latest"
+MODEL_NAME = "qwen3:8b"
 
 # This helps the mem0 know what facts it needs to remember.
 # The default one is for health assistant, so we need a more dnd master one.
@@ -26,10 +26,10 @@ Input: The room is dark and damp. There is a flickering candle on the table.
 Output: {"facts" : ["Room is dark and damp", "Flickering candle on the table"]}
 
 Input: I am a level 5 warrior with a sword and shield.
-Output: {"facts" : ["Character level: 5", "Character class: warrior", "Items: sword, shield"]}
+Output: {"facts" : ["Character level is 5", "Character class is warrior", "Items are sword, shield"]}
 
 Input: My mission is to find the hidden treasure in the forest.
-Output: {"facts" : ["Mission: Find the hidden treasure", "Location: forest"]}
+Output: {"facts" : ["Mission is Find the hidden treasure", "Location is forest"]}
 
 Input: The dragon breathes fire and the knight is injured.
 Output: {"facts" : ["Dragon breathes fire", "Knight is injured"]}
@@ -38,9 +38,10 @@ Input: I found a key and a map in the chest. The map shows a path to the castle.
 Output: {"facts" : ["Found key", "Found map", "Map shows path to castle"]}
 
 Return the facts in a JSON format as shown above.
-""" # TODO
+"""  # TODO
 
 memory_config = {
+    "version": "v1.1",
     "vector_store": {
         "provider": "chroma",
         "config": {
@@ -55,21 +56,21 @@ memory_config = {
         }
     },
     "llm": {
-        "provider": "ollama",
+        "provider": "openai",
         "config": {
             "model": f"{MODEL_NAME}",
             "temperature": 0.1,
-            "ollama_base_url": "http://127.0.0.1:11434"
+            "openai_base_url": "http://127.0.0.1:11434/v1"
         }
     },
-    # "graph_store": {
-    #     "provider": "neo4j",
-    #     "config": {
-    #         "url": "neo4j://localhost:7687",
-    #         "username": "neo4j",
-    #         "password": "12345678"
-    #     }
-    # }, # TODO: Graph db is better for relationship memorization, need tests
+    "graph_store": {
+        "provider": "neo4j",
+        "config": {
+            "url": "neo4j://localhost:7687",
+            "username": "neo4j",
+            "password": "12345678"
+        }
+    },  # TODO: Graph db is better for relationship memorization, need tests
     "custom_fact_extraction_prompt": CUSTOM_FACT_EXTRACTION_PROMPT
 }
 
@@ -123,7 +124,7 @@ def agent_workflow(user_input: str, user_id: str):
     # 1. Retrieval & World Status Check
     # -------------------------------------------------
     # use mem0 to get history context and world state, instead of the entire conversation
-    search_results = m.search(query=user_input, user_id=user_id)
+    search_results = m.search(query=user_input, user_id=user_id, limit=15)
 
     # 解析检索结果
     history_context = ""
@@ -132,39 +133,27 @@ def agent_workflow(user_input: str, user_id: str):
     if "results" in search_results:  # Vector database query result (History Mem)
         history_context = "\n".join([item["memory"] for item in search_results["results"]])
 
-    # if "relations" in search_results:  # Graph database query result (World Status)
-    #     # 例如：Player -- location --> Room A
-    #     world_status = "\n".join(
-    #         [f"{r['source']} {r['relationship']} {r['target']}" for r in search_results["relations"]])
+    if "relations" in search_results:  # Graph database query result (World Status)
+        # 例如：Player -- location --> Room A
+        world_status = "\n".join(
+            [f"{r}" for r in search_results["relations"]])
 
     print(f"[History]: {history_context}")
-    # print(f"[Current World Status]: {world_status}")
+    print(f"[Current World Status]: {world_status}")
 
     # -------------------------------------------------
     # 2. Personality Processing
     # -------------------------------------------------
     # Construct the prompt
-    
-    # full_prompt = f"""
-    # {AGENT_PERSONALITY}
-    #
-    # === History Memory ===
-    # {history_context}
-    #
-    # === World Status ===
-    # {world_status}
-    #
-    # === User input ===
-    # {user_input}
-    #
-    # Please generate your response based on the above contexts:
-    # """
 
     full_prompt = f"""
     {AGENT_PERSONALITY}
 
     === History Memory ===
     {history_context}
+
+    === World Status ===
+    {world_status}
 
     === User input ===
     {user_input}
@@ -190,7 +179,8 @@ def agent_workflow(user_input: str, user_id: str):
         {"role": "user", "content": user_input},
         {"role": "assistant", "content": agent_output}
     ]
-    m.add(messages, user_id=user_id)
+    # m.add(messages, user_id=user_id, enable_graph=False)
+    m.add(messages, user_id=user_id,)
 
     print(f"[Agent Output]: {agent_output}")
     return agent_output
