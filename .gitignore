@@ -9,3 +9,58 @@ papers
 **/.pytest_cache/**
 **/__pycache__/**
 src/db
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Virtual environments
+dnd-ai-env/
+
+# Ollama models (if stored locally)
+.ollama/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# Database files (except what's already covered)
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+
+# Memory/vector store data
+chroma/
+*.chroma/
+vector_store/
