@@ -1,0 +1,79 @@
+# D&D MECHANICS IN EORZEA
+
+## CHARACTER CREATION
+
+**RACES** (FFXIV races with D&D stats):
+- **Hyur** (Human): +1 to all stats, adaptable, common.
+- **Elezen** (Elf): +2 DEX, +1 INT, keen senses, trance.
+- **Lalafell** (Halfling): +2 DEX, +1 CHA, lucky, brave.
+- **Miqo'te** (Tabaxi): +2 DEX, +1 CHA, climbing, speed.
+- **Roegadyn** (Goliath): +2 STR, +1 CON, stone's endurance.
+
+**CLASSES** (FFXIV jobs as D&D classes):
+- **Gladiator/Paladin** (Paladin): Tank, holy magic, oath-bound.
+- **Marauder/Warrior** (Barbarian): Rage, heavy damage, tank.
+- **Conjurer** (Cleric/Druid): Healing, nature magic.
+- **Thaumaturge** (Wizard): Elemental destruction, study.
+- **Archer/Bard** (Bard/Ranger): Support, ranged, music.
+- **Pugilist/Monk** (Monk): Unarmed, speed, discipline.
+- **Rogue/Ninja** (Rogue): Stealth, precision, tricks.
+
+**ABILITY SCORES** (D&D standard):
+- STR (Strength): Physical power, melee damage.
+- DEX (Dexterity): Agility, stealth, ranged attacks.
+- CON (Constitution): Health, endurance, resilience.
+- INT (Intelligence): Knowledge, magic (thaumaturgy).
+- WIS (Wisdom): Perception, intuition, nature magic.
+- CHA (Charisma): Persuasion, performance, leadership.
+
+## COMBAT & ADVENTURING
+
+**INITIATIVE**: Dexterity determines who acts first in combat.
+**HIT POINTS**: Health, determined by class and Constitution.
+**ARMOR CLASS**: Defense value, higher is better.
+**SAVING THROWS**: Ability checks to resist effects.
+
+**REST MECHANICS**:
+- **Short Rest**: 1 hour, recover some abilities.
+- **Long Rest**: 8 hours, recover all abilities and HP.
+
+**SKILL CHECKS** (d20 + ability modifier + proficiency):
+- **Persuasion** (CHA): Convince NPCs, negotiate.
+- **Perception** (WIS): Notice hidden things, ambushes.
+- **Stealth** (DEX): Hide, sneak, move quietly.
+- **Arcana** (INT): Knowledge of magic, aether.
+- **Survival** (WIS): Track, forage, navigate.
+
+## MAGIC SYSTEM (AETHER + D&D)
+
+**SPELL SLOTS**: Limited magical energy per day.
+**SPELL LEVELS**: 1-9, higher = more powerful.
+**SPELL COMPONENTS**:
+- **Verbal** (V): Spoken words in ancient languages.
+- **Somatic** (S): Hand gestures, weaving aether.
+- **Material** (M): Aether crystals, foci.
+
+**SPELL SCHOOLS** (Adapted):
+- **Evocation**: Damage spells (Fire, Blizzard, Thunder).
+- **Conjuration**: Summoning, healing (Cure, Raise).
+- **Abjuration**: Protection, wards (Protect, Shell).
+- **Divination**: Information, Echo-related magic.
+- **Transmutation**: Changing matter, shapeshifting.
+
+## LOOT & ECONOMY
+
+**CURRENCY**:
+- **Gil**: Standard currency (copper = 1gp, silver = 10gp, gold = 100gp).
+- **Allagan Tomestones**: Ancient currency for rare items.
+
+**TREASURE**:
+- **Common**: Potions, basic weapons, minor magic items.
+- **Uncommon**: +1 weapons, useful scrolls, aetheryte shards.
+- **Rare**: Artifact weapons, powerful relics, primal drops.
+- **Legendary**: Zodiac weapons, ultimate raid drops.
+
+**MAGIC ITEMS**:
+- **Potion of Healing**: Restores 2d4+2 HP.
+- **Aetheryte Earring**: Bonus to teleportation magic.
+- **Chocobo Whistle**: Summons mount once per day.
+- **Primal Essence**: Grants resistance to element.

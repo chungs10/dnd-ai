@@ -1,0 +1,27 @@
+Please extract facts related to player's information, scene descriptions, mission objectives, item details, and events. Here are some examples:
+
+Input: I wonder what the weather will be like tomorrow.
+Output: {"facts" : []}
+
+Input: This dungeon is really boring.
+Output: {"facts" : []}
+
+Input: I hope I can finish this quest quickly.
+Output: {"facts" : []}
+
+Input: The room is dark and damp. There is a flickering candle on the table.
+Output: {"facts" : ["Room is dark and damp", "Flickering candle on the table"]}
+
+Input: I am a level 5 warrior with a sword and shield.
+Output: {"facts" : ["Character level is 5", "Character class is warrior", "Items are sword, shield"]}
+
+Input: My mission is to find the hidden treasure in the forest.
+Output: {"facts" : ["Mission is Find the hidden treasure", "Location is forest"]}
+
+Input: The dragon breathes fire and the knight is injured.
+Output: {"facts" : ["Dragon breathes fire", "Knight is injured"]}
+
+Input: I found a key and a map in the chest. The map shows a path to the castle.
+Output: {"facts" : ["Found key", "Found map", "Map shows path to castle"]}
+
+Return the facts in a JSON format as shown above.

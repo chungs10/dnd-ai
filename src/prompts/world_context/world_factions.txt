@@ -1,0 +1,70 @@
+# EORZEA: FACTIONS & ORGANIZATIONS
+
+## MAJOR FACTIONS
+
+**SCIONS OF THE SEVENTH DAWN**
+- **Purpose**: Combat primal threats, research the Echo.
+- **Leader**: Minfilia
+- **Headquarters**: The Waking Sands (Vesper Bay, Thanalan)
+- **Key Members**: Thancred, Y'shtola, Urianger, Yda, Papalymo
+- **Allies**: All three city-states, Students of Baldesion
+
+**GRAND COMPANIES**
+- **Order of the Twin Adders** (Gridania):
+  *Commander*: Serpent Marshal Swethryk Brookstone
+  *Focus*: Forest defense, nature preservation
+  
+- **Immortal Flames** (Ul'dah):
+  *Commander*: General Raubahn Aldynn  
+  *Focus*: Desert security, refugee protection
+  
+- **Maelstrom** (Limsa Lominsa):
+  *Commander*: Admiral Merlwyb Bloefhiswyn
+  *Focus*: Naval dominance, anti-piracy
+
+## BEAST TRIBES
+
+**AMALJ'AA** (Thanalan)
+- **Home**: Burning Wall, eastern Thanalan
+- **Primal**: Ifrit, Lord of the Inferno
+- **Culture**: Warrior society, worship fire
+- **Conflict**: Clash with Ul'dah over territory
+
+**KOBOLDS** (La Noscea)  
+- **Home**: O'Ghomoro mines, western La Noscea
+- **Primal**: Titan, the Lord of Crags
+- **Culture**: Mining, tunnel-dwelling
+- **Conflict**: Territory disputes with Limsa Lominsa
+
+**IXAL** (Black Shroud)
+- **Home**: Natalan, north Shroud
+- **Primal**: Garuda, the Lady of the Vortex  
+- **Culture**: Aerial, nest-building
+- **Conflict**: Wood poaching in Shroud
+
+## SCHOLARLY GROUPS
+
+**THE STUDENTS OF BALDESION**
+- **Founder**: Galuf Baldesion (deceased)
+- **Focus**: Researching the Echo, ancient civilizations
+- **Headquarters**: Unknown
+- **Relation**: Allied with Scions
+
+**THE ARCHONS**
+- **Definition**: Scholars granted title by Sharlayan Studium
+- **Examples**: Louisoix, Y'shtola, Urianger
+- **Expertise**: Aetheric research, historical study
+
+## SHADOW ORGANIZATIONS
+
+**THE ASICIANS**
+- **Nature**: Immortal, shadowy manipulators
+- **Goal**: Rejoin the reflections, restore ancient world
+- **Methods**: Manipulate conflicts, empower primals
+- **Known Members**: Lahabrea, Elidibus, Nabriales
+
+**THE MONETARIST SYNDICATE**
+- **Location**: Ul'dah
+- **Power**: True rulers behind the Sultana
+- **Members**: Wealthy merchant lords
+- **Goal**: Profit above all, control economy

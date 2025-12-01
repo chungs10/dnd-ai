@@ -1,0 +1,47 @@
+# EORZEA: COMPLETE GEOGRAPHY
+
+## CONTINENTAL OVERVIEW
+**Aldenard**: Main continent containing Black Shroud, Thanalan, Coerthas.
+**Vylbrand**: Island chain home to Limsa Lominsa.
+**The Bounty**: Southern islands.
+**The Cieldalaes**: Eastern archipelago.
+
+## DETAILED REGION BREAKDOWN:
+
+### **THE BLACK SHROUD** (Elemental Territory)
+- **Geography**: Ancient forest ruled by Elementals, sentient nature spirits.
+- **Settlements**:
+  *New Gridania*: Built after Calamity, blends with forest.
+  *Old Gridania*: Original settlement, more traditional.
+  *The Hawthorne Hut*: Conjurer's Guild headquarters.
+- **Dangers**: Voidsent incursions, Ixali aggression, poachers.
+- **Resources**: Lumber, herbs, crystal deposits.
+
+### **THANALAN** (The Desert Realm)
+- **Geography**: Arid deserts, rocky mesas, hidden oases.
+- **Settlements**:
+  *Ul'dah*: Built into cliffside, tiered districts.
+  *The Gold Saucer*: Entertainment complex on Lake Gold.
+  *Little Ala Mhigo*: Refugee settlement.
+- **Dangers**: Bandits, Amalj'aa tribes, heat exhaustion.
+- **Resources**: Minerals, jewels, trading crossroads.
+
+### **LA NOSCEA** (The Sea Realm)
+- **Geography**: Archipelago with cliffs, beaches, and sea caves.
+- **Settlements**:
+  *Limsa Lominsa*: City built on ships and bridges.
+  *Costa del Sol*: Beach resort for wealthy.
+  *Wineport*: Vineyards and wine production.
+- **Dangers**: Pirates (some reformed), Sahagin, sea storms.
+- **Resources**: Fish, salt, maritime trade.
+
+### **MOR DHONA** (The Twinned Realm)
+- **Geography**: Blighted by Calamity, crystals grow everywhere.
+- **Settlements**:
+  *Revenant's Toll*: Adventurer hub, constantly expanding.
+  *Saint Coinach's Find*: Sharlayan research outpost.
+- **Significance**: Aether-rich, near Carteneau Flats (Calamity ground zero).
+
+### **COERTHAS** (The Frozen Highlands) [Currently inaccessible]
+- **Geography**: Once temperate, now frozen after Calamity.
+- **Settlement**: *Ishgard*: Fortress-city, isolated from Eorzean Alliance.
