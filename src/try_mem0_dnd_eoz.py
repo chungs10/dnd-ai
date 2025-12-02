@@ -1,0 +1,237 @@
+import os
+from openai import OpenAI
+from mem0 import Memory
+
+os.environ["OPENAI_API_KEY"] = "api"
+# os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+# MODEL_NAME = "capybarahermes"
+MODEL_NAME = "qwen3:8b"
+
+# This helps the mem0 know what facts it needs to remember.
+# The default one is for health assistant, so we need a more dnd master one.
+# See: https://docs.mem0.ai/open-source/features/custom-fact-extraction-prompt
+with open('prompts/fact_extraction.txt', 'r') as f:
+    CUSTOM_FACT_EXTRACTION_PROMPT = f.read()
+
+memory_config = {
+    "version": "v1.1",
+    "vector_store": {
+        "provider": "chroma",
+        "config": {
+            "collection_name": "test",
+            "path": "db",
+        }
+    },
+    "embedder": {
+        "provider": "huggingface",
+        "config": {
+            "model": "multi-qa-MiniLM-L6-cos-v1"
+        }
+    },
+    "llm": {
+        "provider": "openai",
+        "config": {
+            "model": f"{MODEL_NAME}",
+            "temperature": 0.1,
+            "openai_base_url": "http://127.0.0.1:11434/v1"
+        }
+    },
+    "graph_store": {
+        "provider": "neo4j",
+        "config": {
+            "url": "neo4j://localhost:7687",
+            "username": "neo4j",
+            "password": "12345678"
+        }
+    },  # TODO: Graph db is better for relationship memorization, need tests
+    "custom_fact_extraction_prompt": CUSTOM_FACT_EXTRACTION_PROMPT
+}
+
+client = OpenAI(
+    base_url='http://127.0.0.1:11434/v1'
+)
+m = Memory.from_config(memory_config)
+
+# Personality
+# Test only: dnd master
+with open('prompts/agent_personality.txt', 'r') as f:
+    AGENT_PERSONALITY = f.read()
+def load_world_context():
+    """Load all world context files"""
+    context_files = [
+        'world_history.txt',
+        'world_map.txt', 
+        'cities_history.txt',
+        'terminology.txt',
+        'world_factions.txt',
+        'dnd_function.txt',
+        'dnd_master_tools.txt'
+    ]
+    
+    contexts = {}
+    for file in context_files:
+        try:
+            with open(f'prompts/world_context/{file}', 'r') as f:
+                contexts[file.replace('.txt', '')] = f.read()
+        except FileNotFoundError:
+            print(f"Warning: {file} not found, skipping...")
+            contexts[file.replace('.txt', '')] = ""
+    
+    return contexts
+def initialize_world_memory(user_id: str):
+    """Load world context and store it as system messages in memory"""
+    world = load_world_context()
+    
+    # Convert dictionary to formatted string
+    world_text = "=== EORZEA WORLD CONTEXT ===\n\n"
+    
+    total_chars = 0
+    for key, content in world.items():
+        if content and len(content.strip()) > 0:
+            # Add each section with header
+            truncated = content[:2000] if len(content) > 2000 else content
+            world_text += f"--- {key.replace('_', ' ').title()} ---\n"
+            world_text += f"{truncated}\n\n"
+            total_chars += len(truncated)
+            print(f"  Added {key}: {len(truncated)} chars")
+    
+    print(f"\nTotal world context: {total_chars} characters")
+    print(f"Full text length: {len(world_text)} characters")
+    
+    # Check if world_text has actual content
+    if len(world_text.strip()) < 100:  # Increased from 50
+        print("Error: World context is empty or too small")
+        print(f"World text: '{world_text}'")
+        return ""
+    
+    try:
+        # Store as a single system message
+        print("Attempting to add world context to memory...")
+        m.add([
+            {"role": "system", "content": world_text}
+        ], user_id=user_id)
+        
+        print(f"✓ Loaded world context into memory ({len(world_text)} characters)")
+        return world_text
+    except Exception as e:
+        print(f"✗ Error adding world context to memory: {str(e)}")
+        print(f"Error type: {type(e).__name__}")
+        import traceback
+        traceback.print_exc()
+        
+        # Try the chunk method
+        print("\nTrying chunk method...")
+        return add_world_context_in_chunks(world, user_id)
+     
+def add_world_context_in_chunks(world: dict, user_id: str):
+    """Add world context in smaller chunks to avoid embedding issues"""
+    success_count = 0
+    for key, content in world.items():
+        if content and len(content.strip()) > 0:
+            # Split content into even smaller chunks (300 chars)
+            chunk_size = 300
+            for i in range(0, len(content), chunk_size):
+                chunk = f"=== {key.upper()} PART {i//chunk_size + 1} ===\n{content[i:i+chunk_size]}"
+                try:
+                    m.add([
+                        {"role": "system", "content": chunk}
+                    ], user_id=user_id)
+                    print(f"  ✓ Added {key} chunk {i//chunk_size + 1} ({len(chunk)} chars)")
+                    success_count += 1
+                except Exception as e:
+                    print(f"  ✗ Failed to add {key} chunk {i//chunk_size + 1}: {str(e)}")
+    
+    print(f"\nTotal chunks added: {success_count}")
+    return f"Added {success_count} chunks"
+
+def agent_workflow(user_input: str, user_id: str):
+    print(f"\n[User Input]: {user_input}")
+
+    # -------------------------------------------------
+    # 1. Retrieval & World Status Check
+    # -------------------------------------------------
+    # use mem0 to get history context and world state, instead of the entire conversation
+    search_results = m.search(query=user_input, user_id=user_id, limit=15)
+
+    # 解析检索结果
+    history_context = ""
+    world_status = ""
+    world_context = ""
+
+    if "results" in search_results:  # Vector database query result (History Mem)
+        # Separate world context from conversation history
+        for item in search_results["results"]:
+            memory_text = item.get("memory", "")
+            if "=== EORZEA WORLD CONTEXT ===" in memory_text:
+                world_context = memory_text
+            else:
+                history_context += memory_text + "\n"
+
+    if "relations" in search_results:  # Graph database query result (World Status)
+        # 例如：Player -- location --> Room A
+        world_status = "\n".join(
+            [f"{r}" for r in search_results["relations"]])
+
+    print(f"[History]: {history_context}")
+    print(f"[Current World Status]: {world_status}")
+
+    # -------------------------------------------------
+    # 2. Personality Processing
+    # -------------------------------------------------
+    # Construct the prompt
+
+    full_prompt = f"""
+    {AGENT_PERSONALITY}
+
+    === World Context ===
+    {world_context}
+
+    === History Memory ===
+    {history_context}
+
+    === World Status ===
+    {world_status}
+
+    === User input ===
+    {user_input}
+
+    Please generate your response based on the above contexts:
+    """
+
+    # Agent Output
+    response = client.chat.completions.create(
+        model=MODEL_NAME,
+        messages=[{"role": "user", "content": full_prompt}]
+    )
+    agent_output = response.choices[0].message.content
+
+    # -------------------------------------------------
+    # 3. Update
+    # -------------------------------------------------
+    # Update the interaction into   :
+    #   1. Store into Vector database (History Memory)
+    #   2. Analyze the status change and update Graph Store (World Status)
+
+    messages = [
+        {"role": "user", "content": user_input},
+        {"role": "assistant", "content": agent_output}
+    ]
+    # m.add(messages, user_id=user_id, enable_graph=False)
+    m.add(messages, user_id=user_id)
+    
+    print(f"[Agent Output]: {agent_output}")
+    return agent_output
+
+if __name__ == '__main__':
+    user_id = "player_01"
+    # initialization
+    m.delete_all(user_id=user_id)
+    # Load world context into memory FIRST
+    initialize_world_memory(user_id)
+    # The first round
+    agent_workflow("I enter a dark room, finding a rusty key on the floor.", user_id)
+
+    # Second round, there should be some memories
+    agent_workflow("I pick up the key.", user_id)
+
+    agent_workflow("What do I have?", user_id)
