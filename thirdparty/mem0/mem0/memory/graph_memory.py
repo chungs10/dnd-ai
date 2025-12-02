@@ -216,7 +216,11 @@ class MemoryGraph:
                 if tool_call["name"] != "extract_entities":
                     continue
                 for item in tool_call["arguments"]["entities"]:
-                    entity_type_map[item["entity"]] = item["entity_type"]
+                    entity_type = item.get("entity_type", None)
+                    entity = item.get("entity", None)
+                    if entity_type is None or entity is None:
+                        continue
+                    entity_type_map[entity] = entity_type
         except Exception as e:
             logger.exception(
                 f"Error in search tool: {e}, llm_provider={self.llm_provider}, search_results={search_results}"
@@ -436,7 +440,8 @@ class MemoryGraph:
 
             # search for the nodes with the closest embeddings
             source_node_search_result = self._search_source_node(source_embedding, filters, threshold=self.threshold)
-            destination_node_search_result = self._search_destination_node(dest_embedding, filters, threshold=self.threshold)
+            destination_node_search_result = self._search_destination_node(dest_embedding, filters,
+                                                                           threshold=self.threshold)
 
             # TODO: Create a cypher query and common params for all the cases
             if not destination_node_search_result and source_node_search_result:
