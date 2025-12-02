@@ -78,71 +78,68 @@ def load_world_context():
             contexts[file.replace('.txt', '')] = ""
     
     return contexts
-def initialize_world_memory(user_id: str):
-    """Load world context and store it as system messages in memory"""
+def initialize_world_memory(user_id: str, max_chunk_size: int = 2000):
+    """Load full world context with intelligent chunking"""
     world = load_world_context()
     
-    # Convert dictionary to formatted string
-    world_text = "=== EORZEA WORLD CONTEXT ===\n\n"
-    
+    added_chunks = []
     total_chars = 0
+    
     for key, content in world.items():
-        if content and len(content.strip()) > 0:
-            # Add each section with header
-            truncated = content[:2000] if len(content) > 2000 else content
-            world_text += f"--- {key.replace('_', ' ').title()} ---\n"
-            world_text += f"{truncated}\n\n"
-            total_chars += len(truncated)
-            print(f"  Added {key}: {len(truncated)} chars")
-    
-    print(f"\nTotal world context: {total_chars} characters")
-    print(f"Full text length: {len(world_text)} characters")
-    
-    # Check if world_text has actual content
-    if len(world_text.strip()) < 100:  # Increased from 50
-        print("Error: World context is empty or too small")
-        print(f"World text: '{world_text}'")
-        return ""
-    
-    try:
-        # Store as a single system message
-        print("Attempting to add world context to memory...")
-        m.add([
-            {"role": "system", "content": world_text}
-        ], user_id=user_id)
+        if not content or len(content.strip()) == 0:
+            continue
+            
+        # Split large content into smaller chunks
+        section_title = f"=== {key.replace('_', ' ').title()} ===\n"
         
-        print(f"✓ Loaded world context into memory ({len(world_text)} characters)")
-        return world_text
-    except Exception as e:
-        print(f"✗ Error adding world context to memory: {str(e)}")
-        print(f"Error type: {type(e).__name__}")
-        import traceback
-        traceback.print_exc()
-        
-        # Try the chunk method
-        print("\nTrying chunk method...")
-        return add_world_context_in_chunks(world, user_id)
-     
-def add_world_context_in_chunks(world: dict, user_id: str):
-    """Add world context in smaller chunks to avoid embedding issues"""
-    success_count = 0
-    for key, content in world.items():
-        if content and len(content.strip()) > 0:
-            # Split content into even smaller chunks (300 chars)
-            chunk_size = 300
-            for i in range(0, len(content), chunk_size):
-                chunk = f"=== {key.upper()} PART {i//chunk_size + 1} ===\n{content[i:i+chunk_size]}"
+        # If content is small, send as one chunk
+        if len(content) <= max_chunk_size:
+            chunk = section_title + content
+            try:
+                m.add([{"role": "system", "content": chunk}], user_id=user_id)
+                added_chunks.append(chunk)
+                total_chars += len(chunk)
+                print(f"Added {key} ({len(content)} chars)")
+            except Exception as e:
+                print(f"Error adding {key}: {e}")
+        else:
+            # Split large content into chunks
+            content_chunks = split_content(content, max_chunk_size)
+            for i, content_chunk in enumerate(content_chunks):
+                chunk = section_title if i == 0 else ""
+                chunk += content_chunk
+                if i < len(content_chunks) - 1:
+                    chunk += "\n[continued...]"
+                    
                 try:
-                    m.add([
-                        {"role": "system", "content": chunk}
-                    ], user_id=user_id)
-                    print(f"  ✓ Added {key} chunk {i//chunk_size + 1} ({len(chunk)} chars)")
-                    success_count += 1
+                    m.add([{"role": "system", "content": chunk}], user_id=user_id)
+                    added_chunks.append(chunk)
+                    total_chars += len(chunk)
+                    print(f"Added {key} part {i+1} ({len(content_chunk)} chars)")
                 except Exception as e:
-                    print(f"  ✗ Failed to add {key} chunk {i//chunk_size + 1}: {str(e)}")
+                    print(f"Error adding {key} part {i+1}: {e}")
     
-    print(f"\nTotal chunks added: {success_count}")
-    return f"Added {success_count} chunks"
+    print(f"Loaded {len(added_chunks)} world context chunks ({total_chars} total characters)")
+    return added_chunks
+
+def split_content(content: str, chunk_size: int):
+    """Split content intelligently at paragraph boundaries"""
+    paragraphs = content.split('\n\n')
+    chunks = []
+    current_chunk = ""
+    
+    for para in paragraphs:
+        if len(current_chunk) + len(para) + 2 <= chunk_size:
+            current_chunk += para + "\n\n"
+        else:
+            if current_chunk:
+                chunks.append(current_chunk.strip())
+            current_chunk = para + "\n\n"
+    
+    if current_chunk:
+        chunks.append(current_chunk.strip())
+    
+    return chunks
 
 def agent_workflow(user_input: str, user_id: str):
     print(f"\n[User Input]: {user_input}")
