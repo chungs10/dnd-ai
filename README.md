@@ -70,3 +70,22 @@ Download the model from huggingface:
 
 #### 2.1 Deploy with ollama
 
+### plan
+
+add in function calls for LLM into Memo
+Implement DnD mechanics
+1. HP
+2. Roll Dice
+3. Attack
+4. Defense
+5. Create enemy
+6. Check data
+
+Add python class for:
+1. Creature (player and enemy will share the same template for now)
+So that we don't have a changing enemey to the whims of the LLM
+
+AI Master calls roll dice to develop the story
+Create enemy when needed
+
+After finish this, Work on stats affecitng above DnD Mechanics

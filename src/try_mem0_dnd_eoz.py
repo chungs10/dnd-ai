@@ -43,7 +43,7 @@ memory_config = {
             "username": "neo4j",
             "password": "12345678"
         }
-    },  # TODO: Graph db is better for relationship memorization, need tests
+    },
     "custom_fact_extraction_prompt": CUSTOM_FACT_EXTRACTION_PROMPT
 }
 
@@ -54,7 +54,7 @@ m = Memory.from_config(memory_config)
 
 # Personality
 # Test only: dnd master
-with open('prompts/agent_personality.txt', 'r') as f:
+with open('prompts/agent_personality.txt', 'r',encoding="utf-8") as f:
     AGENT_PERSONALITY = f.read()
 def load_world_context():
     """Load all world context files"""
@@ -71,14 +71,14 @@ def load_world_context():
     contexts = {}
     for file in context_files:
         try:
-            with open(f'prompts/world_context/{file}', 'r') as f:
+            with open(f'prompts/world_context/{file}', 'r',encoding="utf-8") as f:
                 contexts[file.replace('.txt', '')] = f.read()
         except FileNotFoundError:
             print(f"Warning: {file} not found, skipping...")
             contexts[file.replace('.txt', '')] = ""
     
     return contexts
-def initialize_world_memory(user_id: str, max_chunk_size: int = 2000):
+def initialize_world_memory(user_id: str, max_chunk_size: int = 100000):
     """Load full world context with intelligent chunking"""
     world = load_world_context()
     
