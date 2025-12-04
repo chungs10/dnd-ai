@@ -53,31 +53,37 @@ client = OpenAI(
 m = Memory.from_config(memory_config)
 
 # Personality
-# Test only: dnd master
 with open('prompts/agent_personality.txt', 'r') as f:
     AGENT_PERSONALITY = f.read()
+
+
 def load_world_context():
     """Load all world context files"""
     context_files = [
         'world_history.txt',
-        'world_map.txt', 
+        'world_map.txt',
         'city_histories.txt',
         'terminology.txt',
         'world_factions.txt',
         'dnd_function.txt',
         'dnd_master_tools.txt'
     ]
-    
+
     contexts = {}
     for file in context_files:
         try:
-            with open(f'world_context/{file}', 'r') as f:
+            with open(f'prompts/world_context/{file}', 'r') as f:
                 contexts[file.replace('.txt', '')] = f.read()
         except FileNotFoundError:
             print(f"Warning: {file} not found, skipping...")
             contexts[file.replace('.txt', '')] = ""
-    
+
     return contexts
+
+
+def dnd_func_call():
+    pass
+
 
 def agent_workflow(user_input: str, user_id: str):
     print(f"\n[User Input]: {user_input}")
@@ -86,7 +92,7 @@ def agent_workflow(user_input: str, user_id: str):
     # 1. Retrieval & World Status Check
     # -------------------------------------------------
     # use mem0 to get history context and world state, instead of the entire conversation
-    search_results = m.search(query=user_input, user_id=user_id, limit=15)
+    search_results = m.search(query=user_input, user_id=user_id, limit=30)
 
     # 解析检索结果
     history_context = ""
@@ -96,7 +102,6 @@ def agent_workflow(user_input: str, user_id: str):
         history_context = "\n".join([item["memory"] for item in search_results["results"]])
 
     if "relations" in search_results:  # Graph database query result (World Status)
-        # 例如：Player -- location --> Room A
         world_status = "\n".join(
             [f"{r}" for r in search_results["relations"]])
 
@@ -142,10 +147,15 @@ def agent_workflow(user_input: str, user_id: str):
         {"role": "assistant", "content": agent_output}
     ]
     # m.add(messages, user_id=user_id, enable_graph=False)
-    m.add(messages, user_id=user_id,)
+    m.add(messages, user_id=user_id, )
 
     print(f"[Agent Output]: {agent_output}")
     return agent_output
+
+# def initialization():
+#     contexts = load_world_context()
+#     for context in contexts:
+#         m.add([{"role": "user", "content": str(context)}], user_id=user_id)
 
 
 if __name__ == '__main__':
