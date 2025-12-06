@@ -371,7 +371,7 @@ if __name__ == '__main__':
     # Load world context into memory FIRST
     initialize_world_memory(user_id)
     # The first round
-    agent_workflow("I am walking through a tunnel.", user_id)
+    agent_workflow("I try to open a door with a key.", user_id)
 
     while True:
         print()
