@@ -44,14 +44,14 @@ memory_config = {
             "openai_base_url": "http://127.0.0.1:11434/v1"
         }
     },
-    "graph_store": {
-        "provider": "neo4j",
-        "config": {
-            "url": "neo4j://localhost:7687",
-            "username": "neo4j",
-            "password": "12345678"
-        }
-    },
+    # "graph_store": {
+    #     "provider": "neo4j",
+    #     "config": {
+    #         "url": "neo4j://localhost:7687",
+    #         "username": "neo4j",
+    #         "password": "12345678"
+    #     }
+    # },
     "custom_fact_extraction_prompt": CUSTOM_FACT_EXTRACTION_PROMPT
 }
 
@@ -65,7 +65,7 @@ m = Memory.from_config(memory_config)
 with open('prompts/agent_personality_tool.txt', 'r', encoding="utf-8") as f:
     AGENT_PERSONALITY = f.read()
 
-recent_conversations = MemoryQueue(size=8)
+recent_conversations = MemoryQueue(size=6)
 
 
 def load_world_context():
@@ -187,7 +187,7 @@ def agent_workflow(user_input: str, user_id: str):
     # 1. Retrieval & World Status Check
     # -------------------------------------------------
     # use mem0 to get history context and world state, instead of the entire conversation
-    search_results = m.search(query=user_input, user_id=user_id, limit=15)
+    search_results = m.search(query=user_input, user_id=user_id, limit=10)
 
     # Parse search results
     history_context = ""
@@ -264,6 +264,7 @@ def complete(messages, tool_choice: str = "auto"):
     # messages.append({"role": "system", "content": llm_system_prompt})
 
     # Step 1: Send conversation and list of available external functions to GPT
+    print(f'Token count: {get_token_count(str(messages))}')
     response_ = client.chat.completions.create(
         model=MODEL_NAME,
         messages=messages,
@@ -372,6 +373,8 @@ if __name__ == '__main__':
     initialize_world_memory(user_id)
     # The first round
     agent_workflow("I try to open a door with a key.", user_id)
+    agent_workflow("I summon a wooden dummy.", user_id)
+    agent_workflow("I attack the wooden dummy.", user_id)
 
     while True:
         print()
