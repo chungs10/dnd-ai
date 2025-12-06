@@ -1,13 +1,17 @@
 import json
 import os
-from tools.dnd_tools_script import *
-from tools.dnd_tools import DnD_TOOLS
-from qwen_token_counter import get_token_count
-from openai import OpenAI
+
 from mem0 import Memory
+from mem0.memory.utils import extract_json
+from openai import OpenAI
+from qwen_token_counter import get_token_count
+
+from simpleMemory.memoryQueue import MemoryQueue
+from tools.dnd_tools import DnD_TOOLS
+from tools.dnd_tools_script import *
 
 os.environ["OPENAI_API_KEY"] = "api"
-# os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 # MODEL_NAME = "capybarahermes"
 MODEL_NAME = "qwen3:8b"
 
@@ -58,8 +62,10 @@ m = Memory.from_config(memory_config)
 
 # Personality
 # Test only: dnd master
-with open('prompts/agent_personality.txt', 'r', encoding="utf-8") as f:
+with open('prompts/agent_personality_tool.txt', 'r', encoding="utf-8") as f:
     AGENT_PERSONALITY = f.read()
+
+recent_conversations = MemoryQueue(size=8)
 
 
 def load_world_context():
@@ -152,6 +158,28 @@ def split_content(content: str, chunk_size: int):
     return chunks
 
 
+def parse_response(response, tools):
+    if tools:
+        processed_response = {
+            "content": response.choices[0].message.content,
+            "tool_calls": [],
+        }
+
+        if response.choices[0].message.tool_calls:
+            for tool_call in response.choices[0].message.tool_calls:
+                processed_response["tool_calls"].append(
+                    {
+                        "name": tool_call.function.name,
+                        "arguments": json.loads(extract_json(tool_call.function.arguments)),
+                        "call_id": tool_call.id
+                    }
+                )
+
+        return processed_response
+    else:
+        return response.choices[0].message.content
+
+
 def agent_workflow(user_input: str, user_id: str):
     print(f"\n[User Input]: {user_input}")
 
@@ -189,8 +217,6 @@ def agent_workflow(user_input: str, user_id: str):
     # Construct the prompt
 
     full_prompt = f"""
-    {AGENT_PERSONALITY}
-
     === World Context ===
     {world_context}
 
@@ -199,6 +225,9 @@ def agent_workflow(user_input: str, user_id: str):
 
     === World Status ===
     {world_status}
+    
+    === Recent Few Conversations ===
+    {str(recent_conversations.get_all())}
 
     === User input ===
     {user_input}
@@ -207,7 +236,11 @@ def agent_workflow(user_input: str, user_id: str):
     """
 
     # Agent Output
-    agent_output = complete(messages=[{"role": "user", "content": full_prompt}])
+    messages = complete(
+        messages=[{"role": "system", "content": AGENT_PERSONALITY},
+                  {"role": "user", "content": full_prompt}])
+    agent_output = messages[-1]['content']
+    print(f"[Agent Output]: {agent_output}")
 
     # -------------------------------------------------
     # 3. Update
@@ -215,15 +248,15 @@ def agent_workflow(user_input: str, user_id: str):
     # Update the interaction into:
     #   1. Store into Vector database (History Memory)
     #   2. Analyze the status change and update Graph Store (World Status)
+    try:
+        m.add(messages, user_id=user_id)
+    except TypeError:
+        print(messages)
 
-    messages = [
-        {"role": "user", "content": user_input},
-        {"role": "assistant", "content": agent_output}
-    ]
+    for msg in messages:
+        recent_conversations.add(msg)
     # m.add(messages, user_id=user_id, enable_graph=False)
-    m.add(messages, user_id=user_id)
 
-    print(f"[Agent Output]: {agent_output}")
     return agent_output
 
 
@@ -231,18 +264,18 @@ def complete(messages, tool_choice: str = "auto"):
     # messages.append({"role": "system", "content": llm_system_prompt})
 
     # Step 1: Send conversation and list of available external functions to GPT
-    response = client.chat.completions.create(
+    response_ = client.chat.completions.create(
         model=MODEL_NAME,
         messages=messages,
         tools=DnD_TOOLS,
         tool_choice=tool_choice
     )
 
-    response_message = response.choices[0].message
+    response_message = parse_response(response_, True)
 
     # Step 2: Check if GPT called external functions
-    if response_message.tool_calls:
-        print(f"[Agent Temp Output]: {response_message.content}")
+    if response_message["tool_calls"]:
+        print(f'[Agent Temp Output]: {response_message["content"]}')
         # Step 3: Call external functions and get results
         available_functions = {
             "roll_dice": roll_dice,
@@ -252,34 +285,36 @@ def complete(messages, tool_choice: str = "auto"):
             "query_target": query_target,
             "query_all": query_all,
         }
-        function_names = response_message.tool_calls
+        tool_calls = response_message["tool_calls"]
         function_responses = []
         # Get matched external functions
-        for function_name in function_names:
-            function_to_call = available_functions[function_name]
+        for tool_call in tool_calls:
+            tool_name = tool_call['name']
+            function_to_call = available_functions[tool_name]
             # Get input parameter information of external functions
-            function_args = json.loads(response_message.function_call.arguments)
+            function_args = tool_call["arguments"]
             # Assemble input parameters according to the specified external function and call it
-            if function_name == "roll_dice":
+            if tool_name == "roll_dice":
                 function_response = function_to_call(
                     modifier=function_args.get("modifier", 0),
                     roll_purpose=function_args.get("roll_purpose", "roll dice"),
                     related_entity=function_args.get("related_entity")
                 )
-            elif function_name == "defense":
+
+            elif tool_name == "defense":
                 function_response = function_to_call(
                     defender_id=function_args.get("defender_id"),
                     defense_modifier=function_args.get("defense_modifier", 0),
                     defense_purpose=function_args.get("defense_purpose", "normal_attack")
                 )
-            elif function_name == "attack":
+            elif tool_name == "attack":
                 function_response = function_to_call(
                     attacker_id=function_args.get("attacker_id"),
                     target_id=function_args.get("target_id"),
                     attack_modifier=function_args.get("attack_modifier", 0),
                     damage_range=function_args.get("damage_range", [1, 4])
                 )
-            elif function_name == "create_entity":
+            elif tool_name == "create_entity":
                 # Handle EntityType enum conversion
                 entity_type_str = function_args.get("entity_type")
                 entity_type = None
@@ -297,33 +332,36 @@ def complete(messages, tool_choice: str = "auto"):
                     defense_modifier=function_args.get("defense_modifier"),
                     custom_id=function_args.get("custom_id")
                 )
-            elif function_name == "query_target":
+            elif tool_name == "query_target":
                 function_response = function_to_call(
                     target_id=function_args.get("target_id"),
                     query_type=function_args.get("query_type")
                 )
-            elif function_name == "query_all":
+            elif tool_name == "query_all":
                 function_response = function_to_call()
             else:
-                function_response = {"error_msg": f"unsupport function name: {function_name}"}
+                function_response = {"error_msg": f"unsupport function name: {tool_name}"}
 
-            function_responses.append(function_response)
+            print(f'[{tool_name}]: {function_response}')
+
+            function_responses.append((tool_call["call_id"], function_response))
 
         # Step 4: Assemble the original request and external function response results and send to GPT
-        messages.append(response_message)
         for i in range(len(function_responses)):
             messages.append(
                 {
-                    "role": "function",
-                    "name": function_names[i],
-                    "content": function_responses[i],
+                    "role": "tool",
+                    "tool_call_id": function_responses[i][0],
+                    "content": json.dumps(function_responses[i][1]),
                 }
             )
-    else:
-        return response_message.content
-
-    while messages[-1]['role'] == "function":
         complete(messages)
+    else:
+        messages.append({
+            "role": "assistent",
+            "content": response_message['content']
+        })
+    return messages
 
 
 if __name__ == '__main__':
@@ -333,9 +371,13 @@ if __name__ == '__main__':
     # Load world context into memory FIRST
     initialize_world_memory(user_id)
     # The first round
-    agent_workflow("I enter a dark room, finding a rusty key on the floor.", user_id)
+    agent_workflow("I am walking through a tunnel.", user_id)
 
-    # Second round, there should be some memories
-    agent_workflow("I pick up the key.", user_id)
+    while True:
+        print()
+        user_input = input('Type "quit" to leave:')
+        if user_input == 'quit':
+            break
+        agent_workflow(user_input, user_id)
 
-    agent_workflow("What do I have?", user_id)
+    print('[System]: bye.')
