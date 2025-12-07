@@ -1,79 +1,111 @@
-# D&D MECHANICS IN EORZEA
+# D and D MECHANICS IN EORZEA
 
-## CHARACTER CREATION
+CHARACTER CREATION RULES FOR EORZEA.
 
-**RACES** (FFXIV races with D&D stats):
-- **Hyur** (Human): +1 to all stats, adaptable, common.
-- **Elezen** (Elf): +2 DEX, +1 INT, keen senses, trance.
-- **Lalafell** (Halfling): +2 DEX, +1 CHA, lucky, brave.
-- **Miqo'te** (Tabaxi): +2 DEX, +1 CHA, climbing, speed.
-- **Roegadyn** (Goliath): +2 STR, +1 CON, stone's endurance.
+RACES IN FINAL FANTASY FOURTEEN WITH D and D STATS.
+Hyur are similar to humans with plus one to all stats.
+Hyur are adaptable and common throughout Eorzea.
+Elezen are similar to elves with plus two dexterity and plus one intelligence.
+Elezen have keen senses and enter trance states.
+Lalafell are similar to halflings with plus two dexterity and plus one charisma.
+Lalafell are lucky and brave in dangerous situations.
+Miqo'te are similar to tabaxi with plus two dexterity and plus one charisma.
+Miqo'te have natural climbing ability and increased speed.
+Roegadyn are similar to goliaths with plus two strength and plus one constitution.
+Roegadyn have stone's endurance for increased resilience.
 
-**CLASSES** (FFXIV jobs as D&D classes):
-- **Gladiator/Paladin** (Paladin): Tank, holy magic, oath-bound.
-- **Marauder/Warrior** (Barbarian): Rage, heavy damage, tank.
-- **Conjurer** (Cleric/Druid): Healing, nature magic.
-- **Thaumaturge** (Wizard): Elemental destruction, study.
-- **Archer/Bard** (Bard/Ranger): Support, ranged, music.
-- **Pugilist/Monk** (Monk): Unarmed, speed, discipline.
-- **Rogue/Ninja** (Rogue): Stealth, precision, tricks.
+CLASSES AS FINAL FANTASY FOURTEEN JOBS ADAPTED TO D and D.
+Gladiator or paladin class serves as tank with holy magic.
+Gladiator or paladin classes are oath bound to their codes.
+Marauder or warrior class uses rage for heavy damage.
+Marauder or warrior class serves as frontline tank.
+Conjurer class combines cleric and druid aspects.
+Conjurer class focuses on healing and nature magic.
+Thaumaturge class serves as wizard with elemental destruction.
+Thaumaturge class requires study and arcane knowledge.
+Archer or bard class provides support and ranged combat.
+Archer or bard class uses music and performance magic.
+Pugilist or monk class fights unarmed with speed.
+Pugilist or monk class requires discipline and training.
+Rogue or ninja class uses stealth and precision.
+Rogue or ninja class employs tricks and subterfuge.
 
-**ABILITY SCORES** (D&D standard):
-- STR (Strength): Physical power, melee damage.
-- DEX (Dexterity): Agility, stealth, ranged attacks.
-- CON (Constitution): Health, endurance, resilience.
-- INT (Intelligence): Knowledge, magic (thaumaturgy).
-- WIS (Wisdom): Perception, intuition, nature magic.
-- CHA (Charisma): Persuasion, performance, leadership.
+ABILITY SCORES FOLLOW D and D STANDARD RULES.
+Strength represents physical power and melee damage.
+Dexterity represents agility stealth and ranged attacks.
+Constitution represents health endurance and resilience.
+Intelligence represents knowledge and thaumaturgy magic.
+Wisdom represents perception intuition and nature magic.
+Charisma represents persuasion performance and leadership.
 
-## COMBAT & ADVENTURING
+COMBAT AND ADVENTURING MECHANICS.
 
-**INITIATIVE**: Dexterity determines who acts first in combat.
-**HIT POINTS**: Health, determined by class and Constitution.
-**ARMOR CLASS**: Defense value, higher is better.
-**SAVING THROWS**: Ability checks to resist effects.
+INITIATIVE is determined by dexterity scores.
+The highest dexterity determines who acts first in combat.
 
-**REST MECHANICS**:
-- **Short Rest**: 1 hour, recover some abilities.
-- **Long Rest**: 8 hours, recover all abilities and HP.
+HIT POINTS represent character health.
+Hit points are determined by class and constitution scores.
 
-**SKILL CHECKS** (d20 + ability modifier + proficiency):
-- **Persuasion** (CHA): Convince NPCs, negotiate.
-- **Perception** (WIS): Notice hidden things, ambushes.
-- **Stealth** (DEX): Hide, sneak, move quietly.
-- **Arcana** (INT): Knowledge of magic, aether.
-- **Survival** (WIS): Track, forage, navigate.
+ARMOR CLASS is the defense value against attacks.
+Higher armor class values are better for avoiding damage.
 
-## MAGIC SYSTEM (AETHER + D&D)
+SAVING THROWS are ability checks to resist effects.
+Saving throws use ability modifiers to resist spells and hazards.
 
-**SPELL SLOTS**: Limited magical energy per day.
-**SPELL LEVELS**: 1-9, higher = more powerful.
-**SPELL COMPONENTS**:
-- **Verbal** (V): Spoken words in ancient languages.
-- **Somatic** (S): Hand gestures, weaving aether.
-- **Material** (M): Aether crystals, foci.
+REST MECHANICS ALLOW CHARACTER RECOVERY.
+Short rest takes one hour and recovers some abilities.
+Long rest takes eight hours and recovers all abilities and hit points.
 
-**SPELL SCHOOLS** (Adapted):
-- **Evocation**: Damage spells (Fire, Blizzard, Thunder).
-- **Conjuration**: Summoning, healing (Cure, Raise).
-- **Abjuration**: Protection, wards (Protect, Shell).
-- **Divination**: Information, Echo-related magic.
-- **Transmutation**: Changing matter, shapeshifting.
+SKILL CHECKS USE D TWENTY PLUS ABILITY MODIFIER PLUS PROFICIENCY.
+Persuasion uses charisma to convince NPCs and negotiate.
+Perception uses wisdom to notice hidden things and ambushes.
+Stealth uses dexterity to hide sneak and move quietly.
+Arcana uses intelligence for knowledge of magic and aether.
+Survival uses wisdom to track forage and navigate terrain.
 
-## LOOT & ECONOMY
+MAGIC SYSTEM COMBINES AETHER AND D and D RULES.
 
-**CURRENCY**:
-- **Gil**: Standard currency (copper = 1gp, silver = 10gp, gold = 100gp).
-- **Allagan Tomestones**: Ancient currency for rare items.
+SPELL SLOTS represent limited magical energy per day.
+Characters have specific numbers of spell slots by level.
 
-**TREASURE**:
-- **Common**: Potions, basic weapons, minor magic items.
-- **Uncommon**: +1 weapons, useful scrolls, aetheryte shards.
-- **Rare**: Artifact weapons, powerful relics, primal drops.
-- **Legendary**: Zodiac weapons, ultimate raid drops.
+SPELL LEVELS range from one to nine.
+Higher spell levels are more powerful magical effects.
 
-**MAGIC ITEMS**:
-- **Potion of Healing**: Restores 2d4+2 HP.
-- **Aetheryte Earring**: Bonus to teleportation magic.
-- **Chocobo Whistle**: Summons mount once per day.
-- **Primal Essence**: Grants resistance to element.
+SPELL COMPONENTS ARE REQUIRED FOR CASTING.
+Verbal components are spoken words in ancient languages.
+Somatic components are hand gestures weaving aether.
+Material components include aether crystals and magical foci.
+
+SPELL SCHOOLS ARE ADAPTED FOR EORZEA.
+Evocation school includes damage spells like fire blizzard and thunder.
+Conjuration school includes summoning and healing spells like cure and raise.
+Abjuration school includes protection spells and wards like protect and shell.
+Divination school includes information and echo related magic.
+Transmutation school includes changing matter and shapeshifting magic.
+
+LOOT AND ECONOMY SYSTEMS.
+
+CURRENCY IN EORZEA INCLUDES SEVERAL TYPES.
+Gil is the standard currency throughout the realm.
+Copper gil equals one gold piece value.
+Silver gil equals ten gold pieces value.
+Gold gil equals one hundred gold pieces value.
+Allagan tomestones are ancient currency for rare items.
+
+TREASURE COMES IN DIFFERENT RARITY LEVELS.
+Common treasure includes potions and basic weapons.
+Common treasure includes minor magic items.
+Uncommon treasure includes plus one weapons.
+Uncommon treasure includes useful scrolls.
+Uncommon treasure includes aetheryte shards.
+Rare treasure includes artifact weapons.
+Rare treasure includes powerful relics.
+Rare treasure includes primal drops.
+Legendary treasure includes zodiac weapons.
+Legendary treasure includes ultimate raid drops.
+
+MAGIC ITEMS HAVE SPECIFIC EFFECTS.
+Potion of healing restores two d four plus two hit points.
+Aetheryte earring provides bonus to teleportation magic.
+Chocobo whistle summons a mount once per day.
+Primal essence grants resistance to specific elements.

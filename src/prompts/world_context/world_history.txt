@@ -2,37 +2,37 @@
 
 ## THE ERAS OF EORZEA
 
-**The Ancient Past (Pre-Umbral Eras):**
-- **Allagan Empire** (~5000 years ago): Technological marvels, creation of Omega and Dalamud, fell due to hubris.
-- **The War of the Magi**: Amdapor (white magic) vs Mhach (black magic) devastated the land.
-- **The Sixth Umbral Era**: Great flood created modern geography, ended with Thaliak's intervention.
+The Ancient Past (Pre-Umbral Eras):
+- Allagan Empire (around 5000 years ago): Technological marvels, creation of Omega and Dalamud, fell due to hubris.
+- The War of the Magi: Amdapor (white magic) versus Mhach (black magic) devastated the land.
+- The Sixth Umbral Era: Great flood created modern geography, ended with Thaliak's intervention.
 
-**The Age of City-States:**
-- **Formation** (After Sixth Umbral): Survivors formed tribes that evolved into modern city-states.
-- **Ala Mhigan Invasion** (20 years ago): King Theodoric conquered Ishgard, attempted to take Gridania.
-- **Garlean Invasion** (15 years ago): Garlean Empire conquered Ala Mhigo, continues to threaten Eorzea.
+The Age of City-States:
+- Formation (After Sixth Umbral): Survivors formed tribes that evolved into modern city-states.
+- Ala Mhigan Invasion (20 years ago): King Theodoric conquered Ishgard, attempted to take Gridania.
+- Garlean Invasion (15 years ago): Garlean Empire conquered Ala Mhigo, continues to threaten Eorzea.
 
-**The Calamity Era:**
-- **Year -1**: Dalamud begins descending, causing panic and cults.
-- **Year 0 (The Calamity)**: 
+The Calamity Era:
+- Year -1: Dalamud begins descending, causing panic and cults.
+- Year 0 (The Calamity):
   - Dalamud reveals itself as Allagan prison.
   - Bahamut breaks free, destroys Carteneau.
   - Louisoix attempts sealing, becomes primal Phoenix.
   - Aether sundered, land transformed, millions perish.
-- **Year 1-4 (The Seventh Umbral Era)**:
-  - "The Waking Sands" established by Minfilia.
+- Year 1-4 (The Seventh Umbral Era):
+  - The Waking Sands established by Minfilia.
   - Primals reappear: Ifrit (Amalj'aa), Titan (Kobolds), Garuda (Ixal).
   - Grand Companies form for mutual defense.
-  - Echo-bearers emerge as "Warriors of Light".
+  - Echo-bearers emerge as Warriors of Light.
 
-**Current Era (Year 5 - A Realm Reborn):**
+Current Era (Year 5 - A Realm Reborn):
 - Adventurers with Echo arrive in Eorzea.
 - Scions actively combat primal threats.
 - Garlean Empire builds Castrum Novum in Mor Dhona.
 - Ascians manipulate events from shadows.
 
 ## KEY HISTORICAL FIGURES:
-- **Louisoix Leveilleur**: Archon who sacrificed himself during the Calamity.
-- **King Theodoric**: Mad king of Ala Mhigo who invaded neighbors.
-- **Nael van Darnus**: White Raven who orchestrated the Calamity.
-- **Archon Galuf Baldesion**: Founder of Students of Baldesion.
+- Louisoix Leveilleur: Archon who sacrificed himself during the Calamity.
+- King Theodoric: Mad king of Ala Mhigo who invaded neighbors.
+- Nael van Darnus: White Raven who orchestrated the Calamity.
+- Archon Galuf Baldesion: Founder of Students of Baldesion.

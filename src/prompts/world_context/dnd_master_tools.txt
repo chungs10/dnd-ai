@@ -2,78 +2,78 @@
 
 ## HOW TO RUN FFXIV AS D&D
 
-**ADVENTURE STRUCTURE**:
-1. **Hook**: Quest from Scions, Grand Company, or notice board.
-2. **Exploration**: Travel through Eorzea, random encounters.
-3. **Combat**: Primal fights, beast tribes, Garleans.
-4. **Story**: Uncover Ascian plots, Echo visions.
-5. **Reward**: Gil, gear, reputation, story progression.
+ADVENTURE STRUCTURE:
+1. Hook: Quest from Scions, Grand Company, or notice board.
+2. Exploration: Travel through Eorzea, random encounters.
+3. Combat: Primal fights, beast tribes, Garleans.
+4. Story: Uncover Ascian plots, Echo visions.
+5. Reward: Gil, gear, reputation, story progression.
 
-**ENCOUNTER DIFFICULTY** (Based on player level):
-- **Easy**: Beast tribe scouts, minor voidsent.
-- **Medium**: Primal minions, Garlean soldiers.
-- **Hard**: Primal avatars, Ascian puppets.
-- **Deadly**: Full primals, Ascians themselves.
+ENCOUNTER DIFFICULTY (Based on player level):
+- Easy: Beast tribe scouts, minor voidsent.
+- Medium: Primal minions, Garlean soldiers.
+- Hard: Primal avatars, Ascian puppets.
+- Deadly: Full primals, Ascians themselves.
 
-**NPC TEMPLATES**:
-- **Scion Agent**: Level 5-10, Echo abilities, helpful.
-- **Grand Company Soldier**: Level 3-6, loyal to city-state.
-- **Beast Tribe Warrior**: Level 2-4, territorial.
-- **Garlean Legionnaire**: Level 4-8, magitek armor.
-- **Ascian**: Level 10+, shadowy, manipulative.
+NPC TEMPLATES:
+- Scion Agent: Level 5-10, Echo abilities, helpful.
+- Grand Company Soldier: Level 3-6, loyal to city-state.
+- Beast Tribe Warrior: Level 2-4, territorial.
+- Garlean Legionnaire: Level 4-8, magitek armor.
+- Ascian: Level 10+, shadowy, manipulative.
 
 ## QUEST TYPES
 
-**MAIN SCENARIO QUEST** (MSQ):
+MAIN SCENARIO QUEST (MSQ):
 - Epic storyline, levels 1-50.
 - Involves primals, Ascians, saving Eorzea.
 - Grants major rewards, unlocks content.
 
-**SIDE QUESTS**:
+SIDE QUESTS:
 - Local problems, fetch quests, minor threats.
 - Rewards: Gil, experience, reputation.
 
-**GRAND COMPANY QUESTS**:
+GRAND COMPANY QUESTS:
 - Military operations for chosen city-state.
 - Unlocks ranks, special gear, mounts.
 
-**DUNGEON QUESTS**:
+DUNGEON QUESTS:
 - Multi-part adventures with boss fights.
 - Requires party of 4-8 adventurers.
 - Rewards: Dungeon-specific loot.
 
-**RAID QUESTS** (High-end):
+RAID QUESTS (High-end):
 - Extreme primal fights, 8-player coordination.
 - Requires optimized gear and strategy.
 
 ## WORLD REACTIONS
 
-**REPUTATION SYSTEM** (Per city-state):
-- **Hated**: Attacked on sight, no services.
-- **Hostile**: Unfriendly, higher prices.
-- **Neutral**: Standard interactions.
-- **Friendly**: Discounts, assistance.
-- **Revered**: Special quests, unique rewards.
+REPUTATION SYSTEM (Per city-state):
+- Hated: Attacked on sight, no services.
+- Hostile: Unfriendly, higher prices.
+- Neutral: Standard interactions.
+- Friendly: Discounts, assistance.
+- Revered: Special quests, unique rewards.
 
-**CONSEQUENCES**:
-- Helping beast tribes → City-state disapproval.
-- Defeating primals → Fame, Ascian attention.
-- Choosing Grand Company → Permanent affiliation.
-- Using Echo publicly → Scion recruitment.
+CONSEQUENCES:
+- Helping beast tribes leads to city-state disapproval.
+- Defeating primals leads to fame and Ascian attention.
+- Choosing Grand Company leads to permanent affiliation.
+- Using Echo publicly leads to Scion recruitment.
 
 ## RANDOM TABLES
 
-**TRAVEL ENCOUNTERS** (d20):
+TRAVEL ENCOUNTERS (d20):
 1-5: Peaceful journey
 6-10: Beast tribe patrol
 11-13: Garlean scout
-14-16: Voidsent manifestation  
+14-16: Voidsent manifestation
 17-18: Merchant caravan
 19: Echo vision (plot clue)
 20: Primal sighting (danger!)
 
-**LOOT DROPS** (After combat):
+LOOT DROPS (After combat):
 - Common: Gil pouch, potions, crafting materials.
-- Uncommon: Magic weapon/armor, rare materials.
+- Uncommon: Magic weapon or armor, rare materials.
 - Rare: Primal weapon replica, tomestones.
 - Very Rare: Mount whistle, artifact piece.

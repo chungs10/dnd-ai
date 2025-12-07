@@ -1,0 +1,230 @@
+COMBAT NARRATION TEMPLATES FOR ELARA
+
+DAMAGE TYPE DESCRIPTIONS
+
+SLASHING DAMAGE FROM SWORDS AND AXES HAS DIFFERENT INTENSITIES.
+Light slashing damage includes glancing blows that scratch armor.
+Light slashing damage draws lines of blood on targets.
+Medium slashing damage bites deep into flesh and opens wounds.
+Medium slashing damage shears padding away from armor.
+Heavy slashing damage severs limbs and cleaves through armor.
+Heavy slashing damage causes blood to spray dramatically.
+Critical slashing damage creates devastating cuts that nearly bisect targets.
+Critical slashing damage produces crimson fountains of blood.
+
+PIERCING DAMAGE FROM SPEARS AND ARROWS HAS DIFFERENT INTENSITIES.
+Light piercing damage pricks skin and deflects off bones.
+Light piercing damage creates shallow punctures in targets.
+Medium piercing damage penetrates armor and finds gaps in defenses.
+Medium piercing damage embeds weapons deep in targets.
+Heavy piercing damage impales completely through targets.
+Heavy piercing damage exits the other side of targets.
+Heavy piercing damage pins targets in place against surfaces.
+Critical piercing damage represents perfect strikes to vital areas.
+Critical piercing damage is unstoppable in its accuracy.
+
+BLUDGEONING DAMAGE FROM HAMMERS AND FISTS HAS DIFFERENT INTENSITIES.
+Light bludgeoning damage rattles bones and creates staggering impacts.
+Light bludgeoning damage includes glancing blows that miss vital areas.
+Medium bludgeoning damage crushes armor and breaks bones.
+Medium bludgeoning damage dents metal and shatters wood.
+Heavy bludgeoning damage shatters limbs beyond repair.
+Heavy bludgeoning damage caves in chests and cracks skulls.
+Critical bludgeoning damage is pulverizing and reduces targets to paste.
+Critical bludgeoning damage has cataclysmic destructive power.
+
+ELEMENTAL DAMAGE INCLUDES SEVERAL DISTINCT TYPES.
+Fire damage chars targets black and melts materials.
+Fire damage ignites objects and causes painful blistering.
+Cold damage causes frostbite and freezes tissues solid.
+Cold damage numbs senses and forms ice on surfaces.
+Lightning damage arcs between targets and causes muscular spasms.
+Lightning damage makes hair stand on end and creates ozone smell.
+Acid damage dissolves materials and corrodes metal surfaces.
+Acid damage burns through flesh and has acrid chemical smells.
+Poison damage appears necrotic with black veins spreading.
+Poison damage paralyzes victims and spreads through their bodies.
+
+COMBAT PHRASES VARY BASED ON INTENSITY LEVEL.
+Low intensity combat involves exchanging blows and testing defenses.
+Medium intensity combat includes fierce duels and desperate fights.
+High intensity combat becomes life or death epic struggles.
+High intensity combat can become legendary in scale.
+
+MISSING ATTACKS HAVE VARIOUS NARRATIVE DESCRIPTIONS.
+Misses might whistle past the target's ear.
+Misses can be deflected by shields or armor.
+Misses often result from targets dodging skillfully.
+Misses sometimes occur when armor absorbs the impact.
+Misses happen when attackers miss clear openings.
+
+DEFEAT HAS DIFFERENT DESCRIPTIONS FOR ENEMIES AND PLAYERS.
+Enemy defeat often involves collapsing to the ground.
+Enemy defeat includes taking their last breath.
+Enemy defeat shows their eyes dimming as life leaves.
+Player defeat involves blackness taking over vision.
+Player defeat includes consciousness fading away.
+Player defeat makes the world darken around them.
+
+NPC ARCHETYPES AND VOICES
+
+DIFFERENT NPC TYPES HAVE DISTINCT SPEECH PATTERNS.
+Noble NPCs speak formally using phrases like pray tell.
+Noble NPCs use words like henceforth and verily.
+Example noble dialogue: Your presence is requested. The matter is delicate.
+
+Commoner NPCs speak simply using words like ain't.
+Commoner NPCs use terms like yonder and reckon.
+Example commoner dialogue: Ain't seen nothing like it. Reckon from mines.
+
+Scholar NPCs speak precisely using words like therefore.
+Scholar NPCs use terms like hypothesis and analysis.
+Example scholar dialogue: Based on aetheric patterns, I hypothesize...
+
+Mystic NPCs speak cryptically about stars whispering.
+Mystic NPCs talk about paths unfolding and echoes of fate.
+Example mystic dialogue: Fate flows where it will. Your pebble may change course.
+
+Soldier NPCs speak directly using sir or ma'am.
+Soldier NPCs talk about orders and recommend caution.
+Example soldier dialogue: Perimeter clear. Recommend caution proceeding.
+
+Rogue NPCs speak slyly using street slang.
+Rogue NPCs use double meanings in their speech.
+Example rogue dialogue: Night market has what you seek... right price.
+
+NPC MOTIVATIONS VARY WIDELY.
+Primary motivations include seeking gold or power.
+Primary motivations include survival needs or love.
+Secondary motivations include redemption or legacy.
+Secondary motivations include seeking knowledge.
+Secret motivations include revenge or atonement.
+Secret motivations include dangerous obsessions.
+
+RELATIONSHIP CUES SHOW NPC ATTITUDES.
+Friendly NPCs smile and use open body postures.
+Friendly NPCs use the player character's name.
+Neutral NPCs are formal and guarded in demeanor.
+Neutral NPCs maintain business-like attitudes.
+Hostile NPCs cross their arms and sneer.
+Hostile NPCs make threats or show aggression.
+
+SCENE SETTING TECHNIQUES
+
+DIFFERENT LOCATIONS HAVE DISTINCT OPENING DESCRIPTIONS.
+Dungeons and caves have air growing cold as you descend.
+Dungeons and caves have echoes that answer footsteps.
+Dungeons and caves have torchlight dancing on wet stone.
+Dungeons and caves have deep silence hanging heavily.
+
+Forests have sunlight filtering through canopy leaves.
+Forests have scents of pine and earth filling the air.
+Forests have birdsong giving way to watchful silence.
+Forests have ancient trees standing like sentinels.
+
+Towns have clamor of merchants and laughter surrounding.
+Towns have stone streets worn smooth by generations.
+Towns have smells of bread, forge, and daily life.
+Towns have eyes watching from windows and shadows.
+
+Ruins show time being unkind yet majesty remaining.
+Ruins have vines claiming stonework as their own.
+Ruins have whispers of glory past echoing softly.
+Ruins have architecture speaking of lost craftsmanship.
+
+ATMOSPHERE VARIES BASED ON DESIRED MOOD.
+Tense atmosphere includes moving shadows and unsettling silence.
+Tense atmosphere includes distant unexplained sounds.
+Tense atmosphere includes feeling of being watched.
+Tense atmosphere includes oppressive heavy air.
+
+Peaceful atmosphere includes gentle natural sounds.
+Peaceful atmosphere includes comforting warmth.
+Peaceful atmosphere includes soothing pleasant smells.
+Peaceful atmosphere includes calming visual patterns.
+Peaceful atmosphere includes feeling of safety.
+
+Mysterious atmosphere includes half-seen movements.
+Mysterious atmosphere includes contradictory clues.
+Mysterious atmosphere feels strange but not threatening.
+Mysterious atmosphere includes environmental puzzles.
+Mysterious atmosphere includes unclear choice paths.
+
+WEATHER AFFECTS SCENE DESCRIPTION.
+Rain weather includes drizzle misting the air.
+Rain weather includes downpour drumming on surfaces.
+Rain weather includes sheets of water falling.
+
+Wind weather includes whispers through openings.
+Wind weather includes howling around structures.
+Wind weather includes tugging at clothing.
+
+Fog weather includes swirling mist movements.
+Fog weather includes clinging to the ground.
+Fog weather includes limiting vision distance.
+
+Sun weather includes beams shining down brightly.
+Sun weather includes warming surfaces pleasantly.
+Sun weather includes creating sharp distinct shadows.
+
+Storm weather includes lightning forking across sky.
+Storm weather includes thunder rolling in distance.
+Storm weather includes raging powerful energy.
+
+TRANSITIONS BETWEEN SCENES FLOW NATURALLY.
+As you pass through areas the environment changes.
+Journey takes you to new locations gradually.
+Time passes during travel showing progression.
+By arrival at destinations scenes establish themselves.
+Scene greets you upon entering with sensory details.
+
+LOOT AND REWARDS DESCRIPTIONS
+
+LOOT COMES IN DIFFERENT TIERS OF QUALITY.
+Common loot includes pouches of silver coins.
+Common loot includes worn leather armor pieces.
+Common loot includes functional iron tools.
+Common loot includes simple practical clothing.
+Common loot includes basic traveling rations.
+
+Uncommon loot includes swords with glowing runes.
+Uncommon loot includes warm-feeling magical pendants.
+Uncommon loot includes bags larger inside than outside.
+Uncommon loot includes coins from forgotten kingdoms.
+Uncommon loot includes intricate valuable jewelry.
+
+Rare loot includes crowns humming with power.
+Rare loot includes maps drawn on dragonhide.
+Rare loot includes gems that pulse with inner light.
+Rare loot includes weapons that sing when drawn.
+Rare loot includes armor that shifts and reforms.
+
+Legendary loot includes artifacts that feel alive.
+Legendary loot warps reality around itself.
+Legendary loot knows its bearer and calls within.
+Legendary loot radiates power visibly.
+Legendary loot makes air taste of magic.
+
+MAGICAL PROPERTIES HAVE DISTINCT CHARACTERISTICS.
+Enchanted items shimmer with magical energy.
+Enchanted items feel lighter than they should.
+Enchanted items have subtle pulsing energy.
+
+Cursed items have dark unsettling auras.
+Cursed items feel unpleasantly cold to touch.
+Cursed items whisper disturbing thoughts.
+
+Sentient items communicate emotions to bearers.
+Sentient items have clear preferences and opinions.
+Sentient items form bonds with their wielders.
+
+Ancient items show patina of ages passed.
+Ancient items demonstrate lost workmanship techniques.
+Ancient items hold history in their every scratch.
+
+DISCOVERY PHRASES REVEAL TREASURE NATURALLY.
+Your eye catches glint from hidden objects.
+Beneath debris you find concealed items.
+Hidden compartments reveal their contents.
+Lifting an object you realize its true nature.
+True value may not be immediately apparent.

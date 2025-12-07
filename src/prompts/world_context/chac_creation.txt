@@ -1,0 +1,111 @@
+# CHARACTER CREATION AND ADVANCEMENT
+# For Elara's Player Character Management
+
+RACE DESCRIPTIONS SPECIFIC TO EORZEA INCLUDE SEVERAL OPTIONS.
+
+HYUR ARE THE HUMAN RACE OF EORZEA.
+Hyur traits include being adaptable and ambitious.
+Hyur abilities include plus one to two ability scores.
+Hyur features include versatility and being skilled.
+Hyur culture shows they are found everywhere with no single homeland.
+
+ELEZEN ARE THE ELF LIKE RACE OF EORZEA.
+Elezen traits include being graceful and long lived.
+Elezen abilities include plus two dexterity and plus one intelligence or wisdom.
+Elezen features include keen senses and trance meditation.
+Elezen culture centers on ancient forests and scholarly pursuits.
+
+LALAFELL ARE THE SMALL FOLK RACE OF EORZEA.
+Lalafell traits include being cheerful and determined.
+Lalafell abilities include plus two constitution and plus one charisma.
+Lalafell features include small size and resilience.
+Lalafell culture focuses on agriculture trade and family clans.
+
+MIQO'TE ARE THE CAT LIKE RACE OF EORZEA.
+Miqo'te traits include being agile and nocturnal.
+Miqo'te abilities include plus two dexterity and plus one wisdom.
+Miqo'te features include darkvision and climbing ability.
+Miqo'te culture follows hunter gatherer traditions with moon worship.
+
+ROEGADYN ARE THE GIANT LIKE RACE OF EORZEA.
+Roegadyn traits include being strong and sea loving.
+Roegadyn abilities include plus two strength and plus one constitution.
+Roegadyn features include powerful build and swimming skill.
+Roegadyn culture centers on seafaring and craftsmanship traditions.
+
+CLASS ARCHETYPES INCLUDE SEVERAL DISTINCT TYPES.
+
+FIGHTERS ARE MARTIAL CLASS CHARACTERS.
+Fighter playstyle involves weapons mastery and frontline combat.
+Fighter key abilities include strength or dexterity and constitution.
+Fighter subclasses include champion and battle master variations.
+
+MAGES ARE ARCANE CLASS CHARACTERS.
+Mage playstyle involves spellcasting and battlefield control.
+Mage key abilities include intelligence and dexterity or constitution.
+Mage schools include evocation abjuration and divination magic.
+
+ROGUES ARE SKILLED CLASS CHARACTERS.
+Rogue playstyle involves stealth and precision attacks.
+Rogue key abilities include dexterity and intelligence or charisma.
+Rogue archetypes include thief assassin and arcane trickster.
+
+CLERICS ARE DIVINE CLASS CHARACTERS.
+Cleric playstyle involves healing and party support.
+Cleric key abilities include wisdom and constitution or strength.
+Cleric domains include life light and war divine aspects.
+
+BACKGROUNDS PROVIDE CHARACTER HISTORY AND SKILLS.
+
+SOLDIER BACKGROUND:
+Soldier skills include athletics and intimidation.
+Soldier equipment includes insignia rank and battle trophies.
+Soldier feature includes military rank recognition.
+
+SAGE BACKGROUND:
+Sage skills include arcana and history knowledge.
+Sage equipment includes research notes and ink supplies.
+Sage feature includes library access privileges.
+
+URCHIN BACKGROUND:
+Urchin skills include sleight of hand and stealth.
+Urchin equipment includes small knife and city map.
+Urchin feature includes knowledge of city secrets.
+
+GUILD ARTISAN BACKGROUND:
+Guild artisan skills include insight and persuasion.
+Guild artisan equipment includes tools and guild letter.
+Guild artisan feature includes guild support network.
+
+LEVEL UP MILESTONES MARK CHARACTER PROGRESSION.
+
+LEVEL THREE brings subclass choice and signature abilities.
+LEVEL FIVE brings extra attack or third level spells and proficiency bonus increase to three.
+LEVEL EIGHT brings ability score improvement and new class features.
+LEVEL ELEVEN brings major power spike and sixth level spells.
+LEVEL FOURTEEN brings subclass capstone features.
+LEVEL SEVENTEEN brings ninth level spells and legendary abilities.
+LEVEL TWENTY brings true mastery and campaign ending power.
+
+CHARACTER BONDS AND MOTIVATIONS DRIVE STORIES.
+
+PERSONAL DRIVES INCLUDE VARIOUS MOTIVATIONS.
+Revenge drive involves wrongs that must be righted.
+Duty drive involves oaths or responsibilities.
+Discovery drive involves knowledge or truth sought.
+Protection drive involves people or places to guard.
+Redemption drive involves past actions to atone for.
+Power drive involves strength or authority desired.
+
+WORLD CONNECTIONS TIE CHARACTERS TO EORZEA.
+Family connections include living relatives and lineage.
+Mentor connections include teachers guiding the character.
+Rival connections include someone competing with the character.
+Organization connections include guilds orders or companies.
+Debt connections include owing something to someone.
+Secret connections include hidden truths about the character.
+
+ELARA PROVIDES CHARACTER CREATION PHILOSOPHY.
+Characters should feel like they belong in Eorzea.
+Character stories begin before the first dice roll.
+Help players find where personal tales intersect with the world's epic.

@@ -1,0 +1,120 @@
+Extract ALL relevant game facts from D&D conversations in Eorzea. Follow these rules:
+
+## EXTRACTION CATEGORIES
+
+### 1. CHARACTER INFORMATION
+- Player stats (level, class, race, abilities)
+- NPC identities (name, race, occupation, allegiance)
+- Physical descriptions (appearance, equipment, condition)
+- Relationships (allies, enemies, family, factions)
+- Status effects (injured, poisoned, blessed, cursed)
+
+### 2. LOCATION & ENVIRONMENT
+- Place names and descriptions
+- Geographic features (terrain, architecture, landmarks)
+- Environmental conditions (lighting, weather, atmosphere)
+- Hidden/secret features (traps, doors, clues)
+- Connections between locations
+
+### 3. ITEMS & TREASURES
+- Item names and descriptions
+- Properties (magical, cursed, broken, valuable)
+- Ownership (who possesses/wields/owns it)
+- Location (where it's stored/found)
+- Usage (how it can be used)
+
+### 4. QUESTS & OBJECTIVES
+- Mission goals (primary/secondary objectives)
+- Quest givers and their motivations
+- Progress markers (completed/failed steps)
+- Time constraints or urgency levels
+- Rewards promised or received
+
+### 5. EVENTS & ACTIONS
+- Combat events (attacks, damage, spells cast)
+- Social interactions (persuasion, deception, intimidation)
+- Skill checks (successes/failures and their consequences)
+- Discoveries (secrets revealed, clues found)
+- Plot advancements (story milestones reached)
+
+### 6. WORLD STATE
+- Faction relations (alliances, hostilities, neutral)
+- Political developments (wars, treaties, coups)
+- Economic conditions (prices, scarcity, trade)
+- Time passage (day/night cycles, seasons, dates)
+- Magical/Environmental phenomena
+
+## EXTRACTION RULES
+
+1. **Extract Even If Implied**: If something is strongly suggested but not explicitly stated, extract it
+2. **Note Changes**: Update facts when contradictions or new information appears
+3. **Track Uncertainties**: Mark uncertain facts as "rumored" or "possible"
+4. **Connect Relationships**: Note cause-effect and relational links
+5. **Prioritize Actionable**: Focus on facts that affect gameplay decisions
+
+## EORZEA-SPECIFIC CONTEXT
+
+For Eorzea, pay special attention to:
+- Aether-related phenomena
+- Primal/God sightings or cult activities
+- Garlean Empire movements
+- Grand Company affiliations
+- Beast tribe activities
+- Scion of the Seventh Dawn members
+
+## EXAMPLES
+
+Input: "I'm Valerion, a Hyur paladin of House Fortemps, level 10 with a glowing greatsword."
+Output: {"facts": [
+  "Player name is Valerion",
+  "Player race is Hyur", 
+  "Player class is paladin",
+  "Player level is 10",
+  "Player allegiance is House Fortemps",
+  "Player wields glowing greatsword"
+]}
+
+Input: "We're in the Shroud, under ancient trees that block most sunlight. I hear running water nearby."
+Output: {"facts": [
+  "Location is The Shroud",
+  "Environment has ancient trees",
+  "Lighting is dim (sunlight blocked)",
+  "Sound of running water nearby"
+]}
+
+Input: "I parry the goblin's attack and counter with my sword, dealing 8 damage."
+Output: {"facts": [
+  "Combat with goblin",
+  "Successfully parried goblin attack",
+  "Attacked goblin with sword",
+  "Dealt 8 damage to goblin"
+]}
+
+Input: "The Garlean scout tells us there's a weapon cache in Castrum Oriens."
+Output: {"facts": [
+  "NPC is Garlean scout",
+  "Information: weapon cache exists",
+  "Location of cache: Castrum Oriens",
+  "Source of information: Garlean scout"
+]}
+
+Input: "I accept the quest from Minfilia to investigate the strange aether currents in Mor Dhona."
+Output: {"facts": [
+  "Quest giver: Minfilia",
+  "Quest objective: investigate strange aether currents",
+  "Quest location: Mor Dhona",
+  "Quest status: accepted"
+]}
+
+## OUTPUT FORMAT
+
+Always return JSON with a "facts" array:
+{
+  "facts": [
+    "Fact 1 in present tense",
+    "Fact 2 in present tense",
+    "Fact 3 in present tense"
+  ]
+}
+
+Keep facts concise (under 10 words each) and in present tense.

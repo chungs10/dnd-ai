@@ -1,0 +1,105 @@
+# TREASURE AND LOOT SYSTEM FOR ELARA'S REWARD MANAGEMENT
+
+## LOOT TIERING AND BALANCE
+
+TREASURE VALUE BY PLAYER LEVEL:
+
+For levels one to three, which are apprentice levels, treasure includes ten to fifty gold pieces total per encounter. Items include common magic items like plus one weapons and basic potions. Gems are single gems worth ten to fifty gold pieces. Mundane gear includes useful non-magical equipment.
+
+For levels four to six, which are journeyman levels, treasure includes fifty to two hundred gold pieces total per encounter. Items include uncommon magic items and first to third level scrolls. Gems form small hoards worth fifty to two hundred gold pieces. Art includes minor art objects worth one hundred to five hundred gold pieces.
+
+For levels seven to ten, which are expert levels, treasure includes two hundred to one thousand gold pieces total per encounter. Items include rare magic items like wands and rods. Gems are varied gems worth two hundred to one thousand gold pieces. Art includes major art objects worth five hundred to two thousand five hundred gold pieces.
+
+For levels eleven and above, which are master levels, treasure includes one thousand gold pieces or more per significant encounter. Items include very rare or legendary items. Gems include large gem clusters and rare stones. Art includes masterpieces and historical artifacts.
+
+## MAGIC ITEM DESCRIPTIONS
+
+WEAPON ENCHANTMENTS:
+
+Common plus one weapons have these characteristics. They glimmer faintly in certain light. They feel perfectly balanced and lighter than normal. Their runes glow softly when drawn. They never need sharpening.
+
+Uncommon plus two special weapons have these characteristics. They hum with contained energy. Their runes pulse with power. They leave faint after-images when swung. They feel warm to the touch even in cold environments.
+
+Rare plus three major weapons have these characteristics. They have visible auras when wielded. They whisper in ancient tongues. They change temperature to match the wielder's intent. They seem to guide themselves toward targets.
+
+Legendary unique weapons have these characteristics. They alter reality around them slightly. They have personalities and can communicate. They draw power from the wielder's soul. They may contain imprisoned entities or spirits.
+
+ARMOR AND PROTECTION:
+
+Common plus one armor class armor has these characteristics. It is unnaturally lightweight. Scratches heal overnight. It fits any wearer perfectly. It never shows wear.
+
+Uncommon plus two resistance armor has these characteristics. It shimmers with defensive energy. It repels dirt and moisture. It warms in cold and cools in heat. It feels like a second skin.
+
+Rare plus three major armor has these characteristics. It forms a protective energy field. It adapts to different damage types. It stores kinetic energy for release. It can become ethereal briefly.
+
+POTIONS AND CONSUMABLES:
+
+Healing potions come in several types. Minor healing potions restore two d four plus two hit points. They are red liquid with a sweet taste. Regular healing potions restore four d four plus four hit points. They are gold liquid with herbal aroma. Greater healing potions restore eight d four plus eight hit points. They are violet and sparkling. Superior healing potions restore ten d four plus twenty hit points. They have rainbow sheen and powerful scent.
+
+Utility potions include several types. Invisibility potions are silver and taste like cold air. Flying potions are blue, fizzy, and give a light feeling. Giant strength potions are murky brown with earthy taste. Mind reading potions are clear with swirls and minty flavor.
+
+## TREASURE DISCOVERY SCENES
+
+DISCOVERY CONTEXTS:
+
+Treasure can be found in chests or vaults. Examples include iron-bound oak chests with heavy locks. Stone vaults with complex mechanisms. Hidden compartments behind objects. False bottoms that reveal contents.
+
+Treasure can be found on corpses or remains. Examples include items found on the body. Items clutched in skeletal hands. Items hidden in clothing folds. Items swallowed for safekeeping.
+
+Treasure can be found in the environment. Examples include behind loose stones in walls. Beneath floorboards or flagstones. Hidden in plain sight like statues or chandeliers. Buried in specific spots revealed by moonlight.
+
+Treasure can be magically concealed. Examples include items visible only at certain times. Items revealed by specific spells. Items hidden in extra-dimensional spaces. Items protected by illusions.
+
+## ECONOMY AND TRADING
+
+PRICE MODIFIERS:
+
+Location affects prices. On frontiers, weapons cost more while luxury items cost less. In cities, everything is available at competitive prices. In remote areas, all prices increase by fifty to one hundred percent. In magical cities, magic items cost less while mundane items cost more.
+
+Relationships affect prices. Strangers pay standard prices. Acquainted customers get ten percent discounts. Friendly customers get twenty percent discounts. Allied customers get thirty percent discounts. Enemies face fifty percent increases or refused service.
+
+Condition affects prices. Pristine items get twenty-five percent increases. Used items have standard prices. Damaged items get twenty-five percent discounts. Broken items get seventy-five percent discounts.
+
+Rarity and urgency affect prices. Common items with no hurry have standard prices. Uncommon items with some need have twenty-five percent increases. Rare items that are urgent have fifty percent increases. Unique items that are desperately needed have one hundred percent or more increases.
+
+BARTERING TECHNIQUES:
+
+Players can offer various things. Cash discounts of ten to twenty percent for full payment. Trade items based on merchant interest. Services or favors for future help. Information like secrets or maps.
+
+Merchants have typical responses. They mention overhead costs. They say items came at great risk. They mention other interested buyers. They say take it or leave it when there is no relationship.
+
+## SPECIAL AND UNIQUE TREASURES
+
+PLOT ITEMS:
+
+Artifacts serve special purposes. They may be part of larger wholes. They may be keys to ancient locations. They may be royal or religious symbols. They may contain crucial information.
+
+Blueprints and maps are valuable. They show hidden locations. They reveal weaknesses. They provide construction plans. They contain star charts and alignments.
+
+Letters and journals provide information. They reveal motivations. They provide clues. They contain passwords. They give historical accounts.
+
+CURSED ITEMS:
+
+Cursed items have detection clues. They feel unnaturally cold or warm. They produce faint whispers when alone. Their reflections move differently. Others react negatively to them.
+
+Curse effects vary in severity. Minor curses cause bad luck or nightmares. Moderate curses reduce stats or create compulsions. Major curses cause transformation or soul binding. Legendary curses have reality-altering consequences.
+
+SENTIENT ITEMS:
+
+Sentient items have personality types. Mentor types are wise, guiding, and patient. Trickster types are playful, mischievous, and chaotic. Warrior types are aggressive and honor-bound. Ancient types are forgetful and speak in riddles. Corrupted types are evil and manipulative.
+
+Sentient items communicate in various ways. Through telepathic words in the mind. Through emotional feelings projected. Through dreams and visions. Through writing that appears on surfaces. Through speaking aloud.
+
+## ELARA'S TREASURE PHILOSOPHY
+
+REWARD DESIGN PRINCIPLES:
+
+Meaningful over numerous means one good item is better than five mediocre ones. Fitting the context means dragon hoards are not the same as bandit stashes. Advancing story means some treasure should drive the plot. Player-centric means considering what players actually want or need. Balanced means not unbalancing the game with overpowered items too early.
+
+AVOID THESE PITFALLS:
+
+Do not give legendary items at level one. Do not give only gold with no interesting items. Do not give items that negate core challenges. Do not forget to describe items evocatively. Do not forget to track what players have acquired.
+
+ELARA'S TREASURE CREED:
+
+Treasure should whisper of stories yet untold. A sword is not just metal. It is the battles it saw. It is the hands that held it. It is the blood it spilled. It is the peace it protected. Make every reward a piece of the world's soul.

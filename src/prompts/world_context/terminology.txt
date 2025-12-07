@@ -2,105 +2,105 @@
 
 ## CORE CONCEPTS
 
-**AETHER**: 
+AETHER: 
 - The life force energy that flows through all living things and the planet itself.
-- Source of all magic, measured in "aetherytes" for teleportation.
+- Source of all magic, measured in aetherytes for teleportation.
 - Can be corrupted (tainted aether) or drained (by primals).
 
-**THE ECHO**:
+THE ECHO:
 - A rare ability that manifests in some individuals after the Calamity.
 - Allows perception of past events (visions) and understanding of all languages.
 - Makes bearers immune to primal tempering.
-- Sometimes called "the Blessing of Light."
+- Sometimes called the Blessing of Light.
 
-**THE CALAMITY**:
+THE CALAMITY:
 - The Seventh Umbral Calamity, occurring 5 years ago.
 - Bahamut's release from the moon Dalamud, devastating Eorzea.
 - Caused massive geological changes, aether disruption, and societal collapse.
 
-**WARRIORS OF LIGHT**:
+WARRIORS OF LIGHT:
 - Adventurers blessed with the Echo who actively defend Eorzea.
 - Recognized by their ability to combat primals without being tempered.
 - Often work with the Scions of the Seventh Dawn.
 
-## MAGICAL & SUPERNATURAL
+## MAGICAL AND SUPERNATURAL
 
-**PRIMALS** (EIKONS):
+PRIMALS (EIKONS):
 - God-like beings summoned by beast tribes using crystals and prayer.
 - Drain region's aether, threatening environmental collapse.
-- Can "temper" followers into mindless worshipers.
+- Can temper followers into mindless worshipers.
 - Examples: Ifrit (Amalj'aa), Titan (Kobolds), Garuda (Ixal).
 
-**TEMPERING**:
+TEMPERING:
 - Process where primals transform followers into fanatical worshipers.
 - Irreversible mental and physical alteration.
 - Echo-bearers are immune to tempering.
 
-**ELEMENTALS**:
+ELEMENTALS:
 - Nature spirits of the Black Shroud that control the forest.
-- Can unleash "Greenwrath" (natural disasters) if angered.
+- Can unleash Greenwrath (natural disasters) if angered.
 - Communicate through Padjal (Seedseers).
 
-**VOIDSENT**:
+VOIDSENT:
 - Demonic creatures from the Void (13th reflection).
 - Summoned by voidmages, threaten all living things.
 - Examples: Ahriman, Succubus, Void Reaper.
 
-## POLITICAL & MILITARY
+## POLITICAL AND MILITARY
 
-**GRAND COMPANIES**:
+GRAND COMPANIES:
 - Military organizations of each city-state:
-  *Order of the Twin Adders* (Gridania)
-  *Immortal Flames* (Ul'dah)  
-  *Maelstrom* (Limsa Lominsa)
+  Order of the Twin Adders (Gridania)
+  Immortal Flames (Ul'dah)
+  Maelstrom (Limsa Lominsa)
 - Recruit adventurers, defend territories, combat threats.
 
-**SCIONS OF THE SEVENTH DAWN**:
+SCIONS OF THE SEVENTH DAWN:
 - Secretive organization combating primal threats.
 - Led by Minfilia, headquarters at The Waking Sands.
 - Employs Echo-bearers and scholars.
 
-**EORZEAN ALLIANCE**:
+EORZEAN ALLIANCE:
 - Mutual defense pact between Gridania, Ul'dah, and Limsa Lominsa.
 - Formed after the Calamity for collective security.
 - Coordinates Grand Company efforts.
 
-**GARLEAN EMPIRE**:
+GARLEAN EMPIRE:
 - Expansionist empire from the north (Ilsabard).
 - Conquered Ala Mhigo 15 years ago.
-- Uses magitek (magic + technology), opposes primals and aether use.
+- Uses magitek (magic plus technology), opposes primals and aether use.
 
-## RACES & PEOPLES
+## RACES AND PEOPLES
 
-**BEAST TRIBES**:
+BEAST TRIBES:
 - Non-human races with tribal societies:
-  *Amalj'aa* (Thanalan) - Summon Ifrit
-  *Kobolds* (La Noscea) - Summon Titan
-  *Ixal* (Black Shroud) - Summon Garuda
-  *Sahagin* (seas) - Summon Leviathan
-  *Sylphs* (Black Shroud) - Summon Ramuh
+  Amalj'aa (Thanalan) - Summon Ifrit
+  Kobolds (La Noscea) - Summon Titan
+  Ixal (Black Shroud) - Summon Garuda
+  Sahagin (seas) - Summon Leviathan
+  Sylphs (Black Shroud) - Summon Ramuh
 - Often summon primals out of desperation or tradition.
 
-**PLAYABLE RACES**:
-- **Hyur**: Most common, adaptable humans.
-- **Elezen**: Tall, long-eared, traditional forest dwellers.
-- **Lalafell**: Small, agrarian people from southern islands.
-- **Miqo'te**: Cat-like hunters with tribal heritage.
-- **Roegadyn**: Large, seafaring people from northern seas.
+PLAYABLE RACES:
+- Hyur: Most common, adaptable humans.
+- Elezen: Tall, long-eared, traditional forest dwellers.
+- Lalafell: Small, agrarian people from southern islands.
+- Miqo'te: Cat-like hunters with tribal heritage.
+- Roegadyn: Large, seafaring people from northern seas.
 
-## LOCATIONS & TRAVEL
+## LOCATIONS AND TRAVEL
 
-**AETHERYTES**:
+AETHERYTES:
 - Magical teleportation crystals in settlements.
 - Allow instant travel for attuned individuals.
 - Powered by local aether.
 
-**CHOCOBOS**:
+CHOCOBOS:
 - Large, rideable birds used for transportation.
 - Can be trained for combat (chocobo companions).
 - Various colors indicate breeding and traits.
 
-**AIRSHIPS**:
+AIRSHIPS:
 - Magitek flying vessels for inter-city travel.
 - Require Grand Company affiliation to use.
 - Operated by Garlond Ironworks.
