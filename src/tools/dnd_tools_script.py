@@ -11,14 +11,6 @@ entity_store: Dict[str, Dict[str, Any]] = {
         "defense_modifier": 1,
         "status": "alive"  # alive/dead
     },
-    "Goblin_01": {
-        "name": "Goblin",
-        "hp_current": 6,
-        "hp_max": 6,
-        "attack_modifier": 1,
-        "defense_modifier": 0,
-        "status": "alive"
-    }
 }
 
 
@@ -146,6 +138,93 @@ def create_entity(
 
     return result
 
+
+# def update_entity(
+#     entity_id: str,
+#     update_description: Optional[str] = None,
+#     name: Optional[str] = None,
+#     hp_current: Optional[int] = None,
+#     hp_max: Optional[int] = None,
+#     status: Optional[str] = None,
+# ) -> Dict[str, Any]:
+#     """
+#     Update any mutable field of an existing entity.
+#
+#     Parameters
+#     ----------
+#     entity_id : str
+#         The ID of the entity to update.
+#     update_description : str, optional
+#         Describe the update reasons and details.
+#     hp_current : int, optional
+#         New current HP (will be clamped to 0..hp_max).
+#     hp_max : int, optional
+#         New maximum HP.  If this is lowered below the current HP,
+#         current HP is clamped to the new maximum.
+#     status : {"alive", "dead"}, optional
+#         New status string.
+#
+#     Returns
+#     -------
+#     dict
+#         {
+#             "success": bool,
+#             "error_msg": str,
+#             "entity_id": str,
+#             "entity_data": dict   # updated entity snapshot
+#         }
+#     """
+#     result = {
+#         "success": False,
+#         "update_description": update_description,
+#         "error_msg": "",
+#         "entity_id": entity_id,
+#         "entity_data": {}
+#     }
+#
+#     # 1. Entity existence check
+#     if entity_id not in entity_store:
+#         result["error_msg"] = f"Entity {entity_id} does not exist"
+#         return result
+#
+#     ent = entity_store[entity_id]  # live reference
+#
+#     # 2. Validate and apply each supplied field
+#     if name is not None:
+#         if not str(name).strip():
+#             result["error_msg"] = "Name cannot be empty"
+#             return result
+#         ent["name"] = str(name).strip()
+#
+#     if hp_max is not None:
+#         if hp_max <= 0:
+#             result["error_msg"] = "hp_max must be greater than 0"
+#             return result
+#         ent["hp_max"] = int(hp_max)
+#         # Clamp current HP to new maximum
+#         ent["hp_current"] = min(ent["hp_current"], ent["hp_max"])
+#
+#     if hp_current is not None:
+#         hp = int(hp_current)
+#         if hp < 0:
+#             result["error_msg"] = "hp_current cannot be negative"
+#             return result
+#         ent["hp_current"] = min(hp, ent["hp_max"])
+#
+#     if status is not None:
+#         if status not in {"alive", "dead"}:
+#             result["error_msg"] = "status must be 'alive' or 'dead'"
+#             return result
+#         ent["status"] = status
+#
+#     # 3. Sync status if HP hit 0
+#     if ent["hp_current"] <= 0:
+#         ent["status"] = "dead"
+#
+#     # 4. Build success response
+#     result["success"] = True
+#     result["entity_data"] = ent.copy()
+#     return result
 
 def roll_dice(
         modifier: int = 0,
