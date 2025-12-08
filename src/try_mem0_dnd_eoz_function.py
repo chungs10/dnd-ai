@@ -13,7 +13,7 @@ from tools.dnd_tools_script import *
 os.environ["OPENAI_API_KEY"] = "api"
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 # MODEL_NAME = "capybarahermes"
-MODEL_NAME = "qwen3:8b"
+MODEL_NAME = "qwen3:8b-8196"
 
 # This helps the mem0 know what facts it needs to remember.
 # The default one is for health assistant, so we need a more dnd master one.
@@ -183,9 +183,7 @@ def parse_response(response, tools):
 def agent_workflow(user_input: str, user_id: str):
     print(f"\n[User Input]: {user_input}")
 
-    # -------------------------------------------------
     # 1. Retrieval & World Status Check
-    # -------------------------------------------------
     # use mem0 to get history context and world state, instead of the entire conversation
     search_results = m.search(query=user_input, user_id=user_id, limit=10)
 
@@ -211,9 +209,7 @@ def agent_workflow(user_input: str, user_id: str):
     print(f"[History]: {history_context}")
     print(f"[Current World Status]: {world_status}")
 
-    # -------------------------------------------------
     # 2. Personality Processing
-    # -------------------------------------------------
     # Construct the prompt
 
     full_prompt = f"""
@@ -232,7 +228,7 @@ def agent_workflow(user_input: str, user_id: str):
     === User input ===
     {user_input}
 
-    Please generate your response based on the above contexts:
+    As the DnD master, please give your response with given information.
     """
 
     # Agent Output
@@ -242,15 +238,13 @@ def agent_workflow(user_input: str, user_id: str):
     agent_output = messages[-1]['content']
     print(f"[Agent Output]: {agent_output}")
 
-    # -------------------------------------------------
     # 3. Update
-    # -------------------------------------------------
     # Update the interaction into:
     #   1. Store into Vector database (History Memory)
     #   2. Analyze the status change and update Graph Store (World Status)
     try:
         m.add(messages, user_id=user_id)
-    except TypeError:
+    except Exception:
         print(messages)
 
     for msg in messages:
@@ -365,17 +359,18 @@ def complete(messages, tool_choice: str = "auto"):
     return messages
 
 
-if __name__ == '__main__':
+def test_attack():
     user_id = "player_01"
     # initialization
     m.delete_all(user_id=user_id)
     # Load world context into memory FIRST
     initialize_world_memory(user_id)
     # The first round
-    agent_workflow("I try to open a door with a key.", user_id)
     agent_workflow("I summon a wooden dummy.", user_id)
     agent_workflow("I attack the wooden dummy.", user_id)
 
+
+def chat(user_id):
     while True:
         print()
         user_input = input('Type "quit" to leave:')
@@ -383,4 +378,6 @@ if __name__ == '__main__':
             break
         agent_workflow(user_input, user_id)
 
-    print('[System]: bye.')
+
+if __name__ == '__main__':
+    test_attack()
