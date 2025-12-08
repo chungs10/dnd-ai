@@ -2,8 +2,8 @@ import os
 from openai import OpenAI
 from mem0 import Memory
 
-WORLD_USER_ID = "world_eorzea"  # Fixed ID for world knowledge
-PLAYER_USER_ID = "player_01"    # Player's ID
+ # Fixed ID for world knowledge
+USER_ID = "player_01"    # Player's ID
 
 os.environ["OPENAI_API_KEY"] = "api"
 # os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
@@ -155,37 +155,48 @@ def load_world_rules():
     
     return contexts
 
-def initialize_world_memory(world_user_id: str, max_chunk_size: int = 2000):
-    """Load world context under SEPARATE user ID"""
-  
-    existing = m.search(query="", user_id=world_user_id, limit=1)
-    if existing.get("results"):
-        print(f"World already loaded in '{world_user_id}'")
+def check_world_loaded(user_id: str):
+    """Check if world context is already loaded in memory"""
+    try:
+        test_search = m.search(query="Eorzea", user_id=user_id, limit=1)
+        if test_search.get("results") and len(test_search["results"]) > 0:
+            return True
+        else:
+            return False
+    except Exception as e:
+        print(f"⚠ Error checking dataset: {e}")
+        return False
+
+def initialize_world_memory(user_id: str, max_chunk_size: int = 2000):
+    """Load world context under the main user ID"""
+    
+    # Check if world context is already loaded
+    if check_world_loaded(user_id):  # <-- Use the existing function
+        print(f"World already loaded for '{user_id}'")
         return []
     
-    print(f"Loading world...")
-
+    print(f"Loading world context for {user_id}...")
+    
     world = load_world_context()
     rules = load_world_rules()
     added_chunks = []
     total_chars = 0
-
+    
     total_files = len([c for c in world.values() if c]) + len([c for c in rules.values() if c])
     print(f"   Found {total_files} Datasets to load")
     
+    # Add master guide
     try:
         master_guide = dnd_guide()
-        # Store under WORLD user ID
         m.add([{"role": "system", "content": master_guide}], 
-              user_id=world_user_id,  # ← world_eorzea, not player_01
-            )  # Skip fact extraction for speed
-        print(f"Added Master Guide to {world_user_id} ({len(master_guide)} chars)")
+              user_id=user_id)
+        print(f"Added Master Guide to {user_id} ({len(master_guide)} chars)")
         added_chunks.append("Master Guide")
         total_chars += len(master_guide)
     except Exception as e:
         print(f"Could not add Master Guide: {e}")
     
-    # ==================== LOAD WORLD CONTENT ====================
+    # Load world content
     print("\n Loading world content (history, factions, cities)...")
     for key, content in world.items():
         if not content or len(content.strip()) == 0:
@@ -197,7 +208,7 @@ def initialize_world_memory(world_user_id: str, max_chunk_size: int = 2000):
             chunk = section_title + content
             try:
                 m.add([{"role": "system", "content": chunk}], 
-                      user_id=world_user_id)
+                      user_id=user_id)
                 added_chunks.append(chunk)
                 total_chars += len(chunk)
                 print(f"Loaded Dataset: {key} ({len(content)} chars)")
@@ -213,27 +224,26 @@ def initialize_world_memory(world_user_id: str, max_chunk_size: int = 2000):
                     
                 try:
                     m.add([{"role": "system", "content": chunk}], 
-                          user_id=world_user_id)
+                          user_id=user_id)
                     added_chunks.append(chunk)
                     total_chars += len(chunk)
                     print(f"Loaded Dataset: {key} part {i+1}")
                 except Exception as e:
                     print(f"Failed Dataset: {key} part {i+1}: {e}")
     
-    # ==================== LOAD WORLD RULES ====================
+    # Load world rules
     print("\n Loading world rules (combat, loot, magic)...")
     for key, content in rules.items():
         if not content or len(content.strip()) == 0:
             continue
             
-        # Add prefix to identify as rules (reduces fact extraction attempts)
         section_title = f"=== GAME RULES: {key.replace('_', ' ').title()} ===\n"
         
         if len(content) <= max_chunk_size:
             chunk = section_title + content
             try:
                 m.add([{"role": "system", "content": chunk}], 
-                      user_id=world_user_id)
+                      user_id=user_id)
                 added_chunks.append(chunk)
                 total_chars += len(chunk)
                 print(f"Loaded Dataset: {key} ({len(content)} chars)")
@@ -249,14 +259,14 @@ def initialize_world_memory(world_user_id: str, max_chunk_size: int = 2000):
                     
                 try:
                     m.add([{"role": "system", "content": chunk}], 
-                          user_id=world_user_id)
+                          user_id=user_id)
                     added_chunks.append(chunk)
                     total_chars += len(chunk)
                     print(f"Loaded Dataset: {key} part {i+1}")
                 except Exception as e:
                     print(f"Failed Dataset: {key} part {i+1}: {e}")
     
-    print(f"\n Loaded {len(added_chunks)} total chunks to {world_user_id} ({total_chars} chars)")
+    print(f"\n Loaded {len(added_chunks)} total chunks to {user_id} ({total_chars} chars)")
     return added_chunks
 
 def split_content(content: str, chunk_size: int):
@@ -289,83 +299,27 @@ def split_content(content: str, chunk_size: int):
     
     return chunks
 
-def check_world_loaded():
-    """Check if world context is already loaded in memory"""
-    try:
-        # Try to search for something world-related
-        test_search = m.search(query="Eorzea", user_id=WORLD_USER_ID, limit=1)
-        if test_search.get("results") and len(test_search["results"]) > 0:
-            return True
-        else:
-            return False
-    except Exception as e:
-        print(f"⚠ Error checking dataset: {e}")
-        return False
-
-
-def agent_workflow(user_input: str, player_user_id: str):
+def agent_workflow(user_input: str, user_id: str):
     print(f"\n[User Input]: {user_input}")
 
     # -------------------------------------------------
     # 1. Retrieval & World Status Check
     # -------------------------------------------------
     # use mem0 to get history context and world state, instead of the entire conversation
-    # search_results = m.search(query=user_input, user_id=player_user_id, limit=15)
+    search_results = m.search(query=user_input, user_id=user_id, limit=15)
 
     # 解析检索结果
-    history_context = ""
-    world_status = ""
+    history_context = "" 
     world_context = ""
-    # Search WORLD knowledge (world_master user)
-    world_results = m.search(
-        query=user_input, 
-        user_id=WORLD_USER_ID,  # ← Fixed world ID
-        limit=5
-    )
-    
-    # Search PLAYER conversation (player_01 user)
-    player_results = m.search(
-        query=user_input, 
-        user_id=player_user_id,  # ← Player's ID
-        limit=10
-    )
 
-    # Parse WORLD results
-    world_context = ""
-    if "results" in world_results:
-        for item in world_results["results"]:
-            memory_text = item.get("memory", "")
-            if memory_text:
-                world_context += memory_text + "\n"
+    if "results" in search_results:
+        # Get just the text, not trying to separate
+        history_context = "\n".join([item.get("memory", "") for item in search_results["results"]])
 
-    # Parse PLAYER conversation results
-    history_context = ""
-    if "results" in player_results:
-        for item in player_results["results"]:
-            memory_text = item.get("memory", "")
-            if memory_text:
-                history_context += memory_text + "\n"
-        # Get world status from player's graph relationships
-    if "relations" in player_results:
-        world_status = "\n".join([f"{r}" for r in player_results["relations"]])
-        print(f"[World Status Relations Found]: {len(player_results['relations'])}")
-    else:
-        world_status = "No relations found yet."
-        print("[World Status]: No relations yet")
-
-    # if "results" in search_results:  # Vector database query result (History Mem)
-    #     # Separate world context from conversation history
-    #     for item in search_results["results"]:
-    #         memory_text = item.get("memory", "")
-    #         if "=== EORZEA WORLD CONTEXT ===" in memory_text:
-    #             world_context = memory_text
-    #         else:
-    #             history_context += memory_text + "\n"
-
-    # if "relations" in search_results:  # Graph database query result (World Status)
-    #     # 例如：Player -- location --> Room A
-    #     world_status = "\n".join(
-    #         [f"{r}" for r in search_results["relations"]])
+    if "relations" in search_results:  # Graph database query result (World Status)
+        # 例如：Player -- location --> Room A
+        world_status = "\n".join(
+            [f"{r}" for r in search_results["relations"]])
     
     function_help = DND_FUNCTION[:300] if DND_FUNCTION else ""
     conversation_help = CONVERSATION[:300] if CONVERSATION else ""
@@ -384,7 +338,7 @@ def agent_workflow(user_input: str, player_user_id: str):
     === World Function ===
     {function_help}
 
-    === World Conmmunication ===
+    === World Conmunication ===
     {conversation_help}
 
     === World Context ===
@@ -421,7 +375,7 @@ def agent_workflow(user_input: str, player_user_id: str):
         {"role": "assistant", "content": agent_output}
     ]
     # m.add(messages, user_id=user_id, enable_graph=False)
-    m.add(messages, user_id=player_user_id)
+    m.add(messages, user_id=user_id)
     
     print(f"[Agent Output]: {agent_output}")
     return agent_output
@@ -433,23 +387,23 @@ if __name__ == '__main__':
     
     # Check if world is already loaded
     print("\n[DEBUG] Checking if world knowledge is already loaded...")
-    is_loaded = check_world_loaded()
+    is_loaded = check_world_loaded(USER_ID)
     print(f"[DEBUG] is_loaded = {is_loaded}")
     
     if is_loaded:
-        print("✓ World knowledge already loaded (skipping)")
+        print(" World knowledge already loaded (skipping)")
     else:
-        print("✗ World knowledge not found, loading for the first time...")
-        initialize_world_memory(WORLD_USER_ID)  # ← Load to world_eorzea
+        print(" World knowledge not found, loading for the first time...")
+        initialize_world_memory(USER_ID)  # ← Load to world_eorzea
     
     # Clear ONLY player conversation (world stays intact)
-    print(f"\n Starting new session for {PLAYER_USER_ID}...")
-    m.delete_all(user_id=PLAYER_USER_ID)  # Only clears player chat
+    print(f"\n Starting new session for {USER_ID}...")
+    # m.delete_all(user_id=USER_ID)  # Only clears player chat
     
     # Play!
     print("\n" + "=" * 60)
     print("GAME START")
     print("=" * 60)
-    agent_workflow("I enter a dark room, finding a rusty key on the floor.", PLAYER_USER_ID)
-    agent_workflow("I pick up the key.", PLAYER_USER_ID)
-    agent_workflow("What do I have?", PLAYER_USER_ID)
+    agent_workflow("I enter a dark room, finding a rusty key on the floor.", USER_ID)
+    agent_workflow("I pick up the key.", USER_ID)
+    agent_workflow("What do I have?", USER_ID)
