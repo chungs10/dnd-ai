@@ -54,12 +54,12 @@ memory_config = {
     # },
     "custom_fact_extraction_prompt": CUSTOM_FACT_EXTRACTION_PROMPT
 }
+WORLD_ID='world_01'
 
 client = OpenAI(
     base_url='http://127.0.0.1:11434/v1'
 )
 m = Memory.from_config(memory_config)
-
 # Personality
 # Test only: dnd master
 with open('prompts/agent_personality_tool.txt', 'r', encoding="utf-8") as f:
@@ -71,13 +71,18 @@ recent_conversations = MemoryQueue(size=6)
 def load_world_context():
     """Load all world context files"""
     context_files = [
+        'world_integration.txt',
+        'world_map.txt',
+        'world_factions.txt',
         'world_history.txt',
-        # 'world_map.txt',
-        # 'cities_history.txt',
-        # 'terminology.txt',
-        # 'world_factions.txt',
-        # 'dnd_function.txt',
-        # 'dnd_master_tools.txt'
+        'cities_history.txt',
+        'terminology.txt',
+        'magic_sys.txt',
+        'dnd_function.txt',
+        'dnd_master_tools.txt',
+        'combat.txt',
+        'loot.txt',
+        'chac_creation.txt',
     ]
 
     contexts = {}
@@ -92,7 +97,7 @@ def load_world_context():
     return contexts
 
 
-def initialize_world_memory(user_id: str, max_chunk_size: int = 100000):
+def initialize_world_memory(world_id: str, max_chunk_size: int = 100000):
     """Load full world context with intelligent chunking"""
     world = load_world_context()
 
@@ -104,35 +109,37 @@ def initialize_world_memory(user_id: str, max_chunk_size: int = 100000):
             continue
 
         # Split large content into smaller chunks
-        section_title = f"=== {key.replace('_', ' ').title()} ===\n"
+        # section_title = f"=== {key.replace('_', ' ').title()} ===\n"
 
         # If content is small, send as one chunk
         if len(content) <= max_chunk_size:
-            chunk = section_title + content
+            chunk = content
             try:
-                m.add([{"role": "system", "content": chunk}], user_id=user_id)
+                m.add([{"role": "system", "content": chunk}], user_id=world_id)
                 added_chunks.append(chunk)
                 new_tks = get_token_count(chunk)
                 total_chars += new_tks
                 print(f"Added {key} ({new_tks} tokens)")
             except Exception as e:
-                print(f"Error adding {key}: {e}")
+                pass
+                # print(f"Error adding {key}: {e}")
         else:
             # Split large content into chunks
             content_chunks = split_content(content, max_chunk_size)
             for i, content_chunk in enumerate(content_chunks):
-                chunk = section_title if i == 0 else ""
-                chunk += content_chunk
+                # chunk = section_title if i == 0 else ""
+                chunk = content_chunk
                 if i < len(content_chunks) - 1:
                     chunk += "\n[continued...]"
 
                 try:
-                    m.add([{"role": "system", "content": chunk}], user_id=user_id)
+                    m.add([{"role": "system", "content": chunk}], user_id=world_id)
                     added_chunks.append(chunk)
                     total_chars += get_token_count(chunk)
                     print(f"Added {key} part {i + 1} ({get_token_count(content_chunk)} chars)")
                 except Exception as e:
-                    print(f"Error adding {key} part {i + 1}: {e}")
+                    pass
+                    # print(f"Error adding {key} part {i + 1}: {e}")
 
     print(f"Loaded {len(added_chunks)} world context chunks ({total_chars} total tokens)")
     return added_chunks
@@ -185,42 +192,42 @@ def agent_workflow(user_input: str, user_id: str):
 
     # 1. Retrieval & World Status Check
     # use mem0 to get history context and world state, instead of the entire conversation
-    search_results = m.search(query=user_input, user_id=user_id, limit=10)
+    conversation_mem = m.search(query=user_input, user_id=user_id, limit=5)
+    world_mem = m.search(query=user_input, user_id=WORLD_ID, limit=15)
 
     # Parse search results
     history_context = ""
-    world_status = ""
     world_context = ""
 
-    if "results" in search_results:  # Vector database query result (History Mem)
+    if "results" in conversation_mem:  # Vector database query result (History Mem)
         # Separate world context from conversation history
-        for item in search_results["results"]:
+        for item in conversation_mem["results"]:
             memory_text = item.get("memory", "")
-            if "=== EORZEA WORLD CONTEXT ===" in memory_text:
-                world_context = memory_text
-            else:
-                history_context += memory_text + "\n"
+            history_context += memory_text + "\n"
 
-    if "relations" in search_results:  # Graph database query result (World Status)
-        # e.g.: Player -- location --> Room A
-        world_status = "\n".join(
-            [f"{r}" for r in search_results["relations"]])
+    if "results" in world_mem:  # Vector database query result (History Mem)
+        # Separate world context from conversation history
+        for item in world_mem["results"]:
+            memory_text = item.get("memory", "")
+            world_context += memory_text + "\n"
+
+    # if "relations" in search_results:  # Graph database query result (World Status)
+    #     # e.g.: Player -- location --> Room A
+    #     world_status = "\n".join(
+    #         [f"{r}" for r in search_results["relations"]])
 
     print(f"[History]: {history_context}")
-    print(f"[Current World Status]: {world_status}")
+    print(f"[Current World Status]: {world_context}")
 
     # 2. Personality Processing
     # Construct the prompt
 
     full_prompt = f"""
-    === World Context ===
+    === World Status ===
     {world_context}
 
     === History Memory ===
     {history_context}
-
-    === World Status ===
-    {world_status}
     
     === Recent Few Conversations ===
     {str(recent_conversations.get_all())}
@@ -359,18 +366,24 @@ def complete(messages, tool_choice: str = "auto"):
     return messages
 
 
-def test_attack():
+def try_attack():
     user_id = "player_01"
     # initialization
     m.delete_all(user_id=user_id)
     # Load world context into memory FIRST
-    initialize_world_memory(user_id)
+    initialize_world_memory(world_id=WORLD_ID)
     # The first round
     agent_workflow("I summon a wooden dummy.", user_id)
     agent_workflow("I attack the wooden dummy.", user_id)
 
 
 def chat(user_id):
+    print(f"[System] Starting...")
+    # initialization
+    m.delete_all(user_id=user_id)
+    # Load world context into memory FIRST
+    initialize_world_memory(world_id=WORLD_ID)
+    print(f"[System] Running now. Hi, {user_id}!")
     while True:
         print()
         user_input = input('Type "quit" to leave:')
@@ -380,4 +393,4 @@ def chat(user_id):
 
 
 if __name__ == '__main__':
-    test_attack()
+    chat("player_01")
