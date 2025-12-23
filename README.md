@@ -127,7 +127,7 @@ dnd-ai/
 │ └── tools/
 └── thirdparty/
 └── mem0/
-```plaintext
+```
 
 ## Team & Contributions
 
