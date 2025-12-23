@@ -1,31 +1,44 @@
-# dnd-ai
+# D&D AI Game Master
 
-## Plan
+An AI-powered Dungeons & Dragons assistant that integrates memory systems with game mechanics to create persistent AI game masters.
 
-mem0ai/mem0: Universal memory layer for AI Agents; Announcing OpenMemory MCP - local and secure memory management.
+![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Mem0](https://img.shields.io/badge/Memory-mem0ai-008CC1?style=for-the-badge)
+![Local LLM](https://img.shields.io/badge/LLM-Local_Models-FF6B6B?style=for-the-badge)
 
-osen77/OpenMemory-MCP: OpenMemory 是您的个人记忆层，用于大语言模型 - 私有、便携且开源。您的记忆存储在本地，为您提供对数据的完全控制。构建具有个性化记忆的人工智能应用程序，同时保持数据安全。
+## Features
 
-letta-ai/letta: Letta is the platform for building stateful agents: open AI with advanced memory that can learn and self-improve over time.
+* **Persistent Memory:** Custom memory implementations for consistent AI personalities across sessions
+* **D&D Mechanics Integration:** Function calling for dice rolls, combat, and game state management
+* **Local & Private:** All data stored locally with no external API dependencies
+* **Multiple Experimental Implementations:** Various approaches to AI memory and game integration
+
+## Tech Stack
+
+* **Core Framework:** Python 3.12+
+* **Memory Management:** mem0ai (customized local implementation)
+* **Large Language Model:** Ollama with Qwen3:8B (local deployment)
+* **Vector Database:** ChromaDB for semantic memory storage
+* **Graph Database:** Neo4j for relationship and world-state tracking
+* **Embedding Model:** Sentence Transformers (`multi-qa-MiniLM-L6-cos-v1`)
+* **Prompt Engineering:** Structured templates for world-building and character consistency
+* **API Interface:** OpenAI-compatible Ollama API wrapper
 
 
-1: Prompt Template: personality, environment, and history. 
-How do we know if the same prompt will generate the same person over and over?
 
-2: Efficient/Effective Memory Mechanism: 
-Everything you enter into the artificial intelligence, it’s added into the prompt template
-Reponses of A.I will also be recorded in order to get close to A.I
 
-3.No one changing the template of the personality
+## System Architecture
 
-### Framework
+A layered architecture supporting AI-driven Dungeons & Dragons gameplay:
+- **Memory Layer:** mem0ai framework with ChromaDB vector storage for persistent character memory and world knowledge
+- **AI Engine:** Ollama with Qwen3:8B model for narrative generation, enhanced with custom prompt templates for D&D-specific storytelling
+- **Game Mechanics Layer:** Deterministic Python function calls for D&D rule enforcement (dice rolls, combat, character stats)
+- **Persistence:** Dual storage system with ChromaDB for semantic memory and Neo4j for entity relationship graphs
+- **Interface Layer:** Python-based conversation handler with tool-calling integration for dynamic gameplay
 
-### Memory
+## Installation & Usage
 
-We customized the mem0 framework to align with us.
-
-## Requirement
-
+### Prerequisites
 Python=3.12
 torch
 Chromadb # as database backend
@@ -33,22 +46,16 @@ mem0ai # as memory layer
 mem0ai[graph] (not using for now)
 neo4j # as graph database backend (not using for now)
 
-## Quick Start
-
-### 1. Environment setup
-
-#### 1.1 python dependency
-```shell
-pip install chromadb # https://docs.trychroma.com/docs/overview/introduction
-pip install sentence-transformers
-pip install -e ./thirdparty/mem0
-pip install mem0ai[graph]
+### Installation
+* Clone the repository and install dependencies:
+```bash
+git clone https://github.com/chungs10/fire-suppression-line-verifier.git
+cd fire-suppression-line-verifier
+pip install -r requirements.txt
 ```
 
-#### 1.2 neo4j (not using for now)
-Setup the neo4j with docker. [official document](https://neo4j.com/docs/operations-manual/current/docker/introduction/)
-
-```shell
+* Setup the neo4j with docker. [official document](https://neo4j.com/docs/operations-manual/current/docker/introduction/)
+```bash
 docker run \
     -p 7474:7474 -p 7687:7687 \
     --name neo4j-apoc \
@@ -60,32 +67,95 @@ docker run \
     neo4j:latest
 ```
 
-Then you can visit http://localhost:7474/browser/ to check whether the neo4j container runs correctly.
+* Install the Ollama model
+```bash
+ollama pull qwen3:8b
+```
 
-### 2. Model deployment
 
-Download the model from huggingface:
+### Run the application:
+1. Start the dependents
+```bash
+docker start neo4j
+sudo systemctl start ollama
+```
 
-[capybarahermes-2.5-mistral-7b](https://huggingface.co/TheBloke/CapybaraHermes-2.5-Mistral-7B-GGUF)
+2. Start the application:
+Use this for dungeon master
+```bash
+python try_mem0_dnd_eoz.py
+```
+Use this for dungeon master functions
+```bash
+python try_mem0_dnd_eoz_function.py
+```
 
-#### 2.1 Deploy with ollama
+3. Access Neo4j for graph relationships
+	Navigate to http://localhost:7474 and login using following credentials
+	URL: neo4j://localhost:7687
+	Username:neo4j
+	Password:12345678
 
-### plan
 
-add in function calls for LLM into Memo
-Implement DnD mechanics
-1. HP
-2. Roll Dice
-3. Attack
-4. Defense
-5. Create enemy
-6. Check data
+## Project Structure
+```plaintext
+dnd-ai/
+├── LICENSE
+├── README.md
+├── requirements.txt
+├── dnd-ai-env/
+│ ├── README.md
+│ ├── bin/
+│ ├── include/
+│ ├── lib/
+│ ├── lib64 -> lib
+│ ├── pyvenv.cfg
+│ └── share/
+├── models/
+│ └── LLM/
+├── src/
+│ ├── check.py
+│ ├── test.py
+│ ├── tmp.py
+│ ├── try_mem0.py
+│ ├── try_mem0_dnd.py
+│ ├── try_mem0_dnd_eoz.py
+│ ├── try_mem0_dnd_eoz_function.py
+│ ├── db/
+│ ├── prompts/
+│ ├── simpleMemory/
+│ └── tools/
+└── thirdparty/
+└── mem0/
+```plaintext
 
-Add python class for:
-1. Creature (player and enemy will share the same template for now)
-So that we don't have a changing enemey to the whims of the LLM
+## Team & Contributions
 
-AI Master calls roll dice to develop the story
-Create enemy when needed
+This project was developed as part of a **school research project** exploring AI memory systems and game integration. It was a collaborative effort between two students.
 
-After finish this, Work on stats affecitng above DnD Mechanics
+**Student A (My Role):**
+* **Prompt Engineering & World Building:** Designed and implemented the prompt loading system for AI personality, world context, and game rules
+* **Database Integration:** Configured ChromaDB vector storage and ensured proper database detection and initialization
+
+**Student B (Teammate):**
+* **Function Creation:** Developed the D&D game mechanics functions (dice rolling, combat, character management)
+* **Technology Integration:** Integrated Ollama, mem0ai, and other core technologies into a cohesive system
+* **Tool Calling Implementation:** Built the function calling infrastructure for AI-triggered game actions
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Notes
+* **Model Requirements:** The Qwen3:8B model must be downloaded separately via Ollama (`ollama pull qwen3:8b`) due to size constraints
+* **Database Storage:** ChromaDB vector database files are stored locally in the `db/` directory
+* **Memory Initialization:** World context only needs to be loaded once - subsequent runs will detect and use existing memory
+* **Experimental Status:** This is a research project exploring AI memory systems - architecture and features may evolve
+* **Local Development:** Designed for offline use with local LLMs; no external API dependencies required
+* **Disclaimer:** Not affiliated with Wizards of the Coast or official Dungeons & Dragons franchise
+
+### AI-Assisted Development
+* **Development Support:** AI assisted with code debugging, generated specific functions (including text chunking algorithms), helped refine prompt templates, and provided coding guidance through questions about implementation approaches
+* **Documentation Aid:** AI supported the creation of technical documentation
+* **Human Direction:** All system architecture, design decisions, and final implementations were made by human developers
